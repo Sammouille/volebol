@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bdyqqejrghx68"]
+
+[ext_resource type="Script" uid="uid://btrvc5edi8oxw" path="res://scripts_scenes/gym/zhonya.gd" id="1_exlq5"]
+[ext_resource type="Script" uid="uid://cmr6nsg774cjv" path="res://scripts_scenes/crew/gaming_handler.gd" id="1_n5wjn"]
+[ext_resource type="Script" uid="uid://b6wqvc510boft" path="res://scripts_scenes/gym/terrain.gd" id="3_gk1jr"]
+[ext_resource type="PackedScene" uid="uid://dihr5fgsrlfjj" path="res://scripts_scenes/ballon/ballon.tscn" id="3_rgj0q"]
+[ext_resource type="PackedScene" uid="uid://nu7mpvcx61dm" path="res://scripts_scenes/player/player.tscn" id="5_n5wjn"]
+[ext_resource type="Script" uid="uid://csjw56ia02fnf" path="res://scripts_scenes/gym/boite_ballons.gd" id="6_l3lxg"]
+
+[node name="Gym" type="Node2D" unique_id=1745283274]
+
+[node name="Zhonya" type="Node" parent="." unique_id=861837198 groups=["Zhonya"]]
+script = ExtResource("1_exlq5")
+
+[node name="CrewHandler" type="Node" parent="." unique_id=1411257799 node_paths=PackedStringArray("players_on")]
+script = ExtResource("1_n5wjn")
+players_on = [NodePath("../Terrain/Player"), NodePath("../Terrain/Player2"), NodePath("../Terrain/Player3"), NodePath("../Terrain/Player4"), NodePath("../Terrain/Player5"), NodePath("../Terrain/Player6")]
+scene_ballon = ExtResource("3_rgj0q")
+
+[node name="Terrain" type="Node2D" parent="." unique_id=46393785]
+z_index = -2
+position = Vector2(576, 324)
+script = ExtResource("3_gk1jr")
+couleur_sol = Color(0.41357413, 0.18958604, 0.22651654, 1)
+couleur_bande = Color(0.91859436, 0.79811287, 0.5563978, 1)
+
+[node name="Camera2D" type="Camera2D" parent="Terrain" unique_id=2088095385]
+
+[node name="Player" parent="Terrain" unique_id=1144768501 instance=ExtResource("5_n5wjn")]
+position = Vector2(-391, 174)
+
+[node name="Player2" parent="Terrain" unique_id=4522613 instance=ExtResource("5_n5wjn")]
+position = Vector2(-389, -1)
+
+[node name="Player3" parent="Terrain" unique_id=2146299651 instance=ExtResource("5_n5wjn")]
+position = Vector2(-386, -175)
+
+[node name="Player4" parent="Terrain" unique_id=2107973400 instance=ExtResource("5_n5wjn")]
+position = Vector2(-156, -169)
+
+[node name="Player5" parent="Terrain" unique_id=1079525473 instance=ExtResource("5_n5wjn")]
+position = Vector2(-215, 2)
+
+[node name="Player6" parent="Terrain" unique_id=1054198080 instance=ExtResource("5_n5wjn")]
+position = Vector2(-166, 170)
+
+[node name="BoiteBallons" type="Node2D" parent="Terrain" unique_id=1209078299 groups=["BoiteBallons"]]
+unique_name_in_owner = true
+script = ExtResource("6_l3lxg")
+
+[node name="Ballon0" parent="Terrain/BoiteBallons" unique_id=1998143594 instance=ExtResource("3_rgj0q")]

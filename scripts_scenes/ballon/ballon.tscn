@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dihr5fgsrlfjj"]
+
+[ext_resource type="Script" uid="uid://br1b5u6khegie" path="res://scripts_scenes/ballon/ballon.gd" id="1_4weii"]
+[ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_ug3kc"]
+[ext_resource type="Script" uid="uid://bfxpqgqvh752k" path="res://scripts_scenes/ballon/ballon_sprite.gd" id="3_ug3kc"]
+
+[sub_resource type="Resource" id="Resource_gk1jr"]
+script = ExtResource("2_ug3kc")
+color = Color(0.50039816, 0.42664316, 0.80748993, 1)
+libero_color = Color(0.7761101, 0.7638154, 0.9921538, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2eilv"]
+radius = 13.038404
+
+[node name="Balle" type="Node2D" unique_id=1998143594]
+z_as_relative = false
+script = ExtResource("1_4weii")
+last_crew = SubResource("Resource_gk1jr")
+couleur = Color(1, 1, 1, 1)
+frottements_aerien = 0.01
+hauteur = 2.0
+force_grav = 0.5
+
+[node name="Sprite" type="Node2D" parent="." unique_id=1176416498]
+script = ExtResource("3_ug3kc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1927753972]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1409884330]
+shape = SubResource("CircleShape2D_2eilv")
