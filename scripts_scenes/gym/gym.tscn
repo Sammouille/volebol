@@ -12,40 +12,38 @@
 [node name="Zhonya" type="Node" parent="." unique_id=861837198 groups=["Zhonya"]]
 script = ExtResource("1_exlq5")
 
-[node name="CrewHandler" type="Node" parent="." unique_id=1411257799 node_paths=PackedStringArray("players_on")]
-script = ExtResource("1_n5wjn")
-players_on = [NodePath("../Terrain/Player"), NodePath("../Terrain/Player2"), NodePath("../Terrain/Player3"), NodePath("../Terrain/Player4"), NodePath("../Terrain/Player5"), NodePath("../Terrain/Player6")]
-scene_ballon = ExtResource("3_rgj0q")
-
 [node name="Terrain" type="Node2D" parent="." unique_id=46393785]
 z_index = -2
 position = Vector2(576, 324)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("3_gk1jr")
 couleur_sol = Color(0.41357413, 0.18958604, 0.22651654, 1)
 couleur_bande = Color(0.91859436, 0.79811287, 0.5563978, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Terrain" unique_id=2088095385]
 
-[node name="Player" parent="Terrain" unique_id=1144768501 instance=ExtResource("5_n5wjn")]
-position = Vector2(-391, 174)
+[node name="CrewHandler" type="Node2D" parent="Terrain" unique_id=1321448907]
+script = ExtResource("1_n5wjn")
+scene_ballon = ExtResource("3_rgj0q")
 
-[node name="Player2" parent="Terrain" unique_id=4522613 instance=ExtResource("5_n5wjn")]
-position = Vector2(-389, -1)
+[node name="Player6" parent="Terrain/CrewHandler" unique_id=1054198080 instance=ExtResource("5_n5wjn")]
+position = Vector2(-211, 359)
 
-[node name="Player3" parent="Terrain" unique_id=2146299651 instance=ExtResource("5_n5wjn")]
-position = Vector2(-386, -175)
+[node name="Player5" parent="Terrain/CrewHandler" unique_id=1079525473 instance=ExtResource("5_n5wjn")]
+position = Vector2(-201, 12)
 
-[node name="Player4" parent="Terrain" unique_id=2107973400 instance=ExtResource("5_n5wjn")]
-position = Vector2(-156, -169)
+[node name="Player4" parent="Terrain/CrewHandler" unique_id=2107973400 instance=ExtResource("5_n5wjn")]
+position = Vector2(-195, -303)
 
-[node name="Player5" parent="Terrain" unique_id=1079525473 instance=ExtResource("5_n5wjn")]
-position = Vector2(-215, 2)
+[node name="Player3" parent="Terrain/CrewHandler" unique_id=2146299651 instance=ExtResource("5_n5wjn")]
+position = Vector2(-727, -308)
 
-[node name="Player6" parent="Terrain" unique_id=1054198080 instance=ExtResource("5_n5wjn")]
-position = Vector2(-166, 170)
+[node name="Player2" parent="Terrain/CrewHandler" unique_id=4522613 instance=ExtResource("5_n5wjn")]
+position = Vector2(-736, 5)
+
+[node name="Player" parent="Terrain/CrewHandler" unique_id=1144768501 instance=ExtResource("5_n5wjn")]
+position = Vector2(-740, 316)
 
 [node name="BoiteBallons" type="Node2D" parent="Terrain" unique_id=1209078299 groups=["BoiteBallons"]]
 unique_name_in_owner = true
 script = ExtResource("6_l3lxg")
-
-[node name="Ballon0" parent="Terrain/BoiteBallons" unique_id=1998143594 instance=ExtResource("3_rgj0q")]

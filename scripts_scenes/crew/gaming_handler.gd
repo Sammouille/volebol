@@ -1,7 +1,7 @@
-extends Node
+extends Node2D
 
 var current_idx:= -1
-@export var players_on: Array[Player]
+@onready var players_on:= get_children()
 
 @export var scene_ballon: PackedScene
 
@@ -17,6 +17,7 @@ func change_played_player(player_idx: int):
 	elif player_idx > players_on.size()-1:
 		current_idx = 0
 	players_on[current_idx].played = true
+	move_child(players_on[current_idx], 5)
 		
 
 func _input(event: InputEvent) -> void:
@@ -27,11 +28,14 @@ func _input(event: InputEvent) -> void:
 func DEBUG_played_player_get_ball():
 	var nouveau_ballon := scene_ballon.instantiate()
 	nouveau_ballon.name = "ballon_0"
-	nouveau_ballon.apply_physics = false
 	%BoiteBallons.add_child(nouveau_ballon)
 	%BoiteBallons.ballon_actif = nouveau_ballon
+	nouveau_ballon.active = true
 	nouveau_ballon.holding_player = players_on[current_idx]
 	players_on[current_idx].ballon_tenu = nouveau_ballon
+	nouveau_ballon.hauteur = players_on[current_idx].hauteur + 140
+	nouveau_ballon.actualiserScale()
+	nouveau_ballon.apply_physics = false
 
 func _ready() -> void:
 	change_played_player(0)
@@ -47,17 +51,5 @@ func _process(delta: float) -> void:
 		else:
 			change_played_player(current_idx + int(input_getter.input_changement))
 	
-	if input_getter.input_deplacement != Vector2.ZERO:
-		players_on[current_idx].deplacement(input_getter.input_deplacement)
-	
-	if input_getter.input_jump:
-		players_on[current_idx].tryJump(input_getter.input_jump)
-	
-	if input_getter.input_pass: 
-		players_on[current_idx].tryPass(input_getter.input_pass)
-	
-	if input_getter.input_shoot:
-		players_on[current_idx].tryShoot(input_getter.input_shoot)
-	
-	players_on[current_idx].updateCharges(input_getter.charge_jump, input_getter.charge_pass, input_getter.charge_shoot)
+	players_on[current_idx].updatePlayer(input_getter)
 	

@@ -18,9 +18,9 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	draw_colored_polygon([%Looker.position + Vector2(20.0,00.0), %Looker.position.rotated(0.2), %Looker.position, %Looker.position.rotated(-0.2)], get_parent().crew.color)
+	draw_colored_polygon([%Looker.position + Vector2(44.0,00.0), %Looker.position.rotated(0.2), %Looker.position, %Looker.position.rotated(-0.2)], get_parent().crew.color)
 	if charge != 0.0:
-		draw_line(-%Looker.position * 100.0, %Looker.position * 100.0, get_parent().crew.color,charge * 15.0)
+		draw_line(-%Looker.position * 100.0, %Looker.position * 100.0, get_parent().crew.color,charge * 50.0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -35,7 +35,7 @@ func _physics_process(delta: float) -> void:
 				current_aim = current_aim.slerp(last_aim, turn_speed * delta)
 			
 			look_at(global_position + current_aim)
-		else:
+		elif boite_ballons.ballon_actif:
 			look_at(boite_ballons.ballon_actif.global_position)
 			#look_at(last_aim)
 			#print(global_position)

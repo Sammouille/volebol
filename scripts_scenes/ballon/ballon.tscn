@@ -11,18 +11,18 @@ libero_color = Color(0.7761101, 0.7638154, 0.9921538, 1)
 metadata/_custom_type_script = "uid://di745a8aj6pci"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2eilv"]
-radius = 13.038404
+radius = 25.0
 
 [node name="Balle" type="Node2D" unique_id=1998143594]
 z_as_relative = false
 script = ExtResource("1_4weii")
 last_crew = SubResource("Resource_gk1jr")
 couleur = Color(1, 1, 1, 1)
+frottements_sol = 0.01
 frottements_aerien = 0.01
-hauteur = 2.0
-force_grav = 0.5
 
 [node name="Sprite" type="Node2D" parent="." unique_id=1176416498]
+unique_name_in_owner = true
 script = ExtResource("3_ug3kc")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1927753972]

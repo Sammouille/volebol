@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://ckl3w2hu2eb0w" path="res://scripts_scenes/player/player_sprite.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://2j2v6vtp0l4f" path="res://scripts_scenes/player/forward.gd" id="4_jgxua"]
 [ext_resource type="Script" uid="uid://cvxrxhi4y75k8" path="res://scripts_scenes/player/jump.gd" id="5_hynx1"]
+[ext_resource type="Script" uid="uid://cc8lw1u1gyoj0" path="res://scripts_scenes/player/shoot.gd" id="6_st2lq"]
 
 [sub_resource type="Resource" id="Resource_hqtel"]
 script = ExtResource("2_i3pqv")
@@ -29,41 +30,27 @@ point_count = 3
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.24499999, 0.6966293), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Curve" id="Curve_hynx1"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.74499995, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbgsk"]
-radius = 35.0
+radius = 72.0
 
 [sub_resource type="Curve" id="Curve_n2eyn"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.74499995, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_limits = [0.0, 1.0, 120.0, 245.7485]
+_data = [Vector2(120, 0), 0.0, 0.0, 0, 0, Vector2(177.42514, 1), 0.0, 0.0, 0, 0, Vector2(225.62874, 1), 0.0, 0.0, 0, 0, Vector2(245.7485, 0), 0.0003651274, 0.0, 0, 0]
+point_count = 4
 
-[sub_resource type="Curve" id="Curve_crrbi"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.74499995, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_hynx1"]
+_limits = [0.0, 1.0, 0.0, 0.6]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15449104, 0), 0.0, 0.0, 0, 0, Vector2(0.3017964, 1), 0.0, 0.0, 0, 0, Vector2(0.4491018, 1), 0.0, 0.0, 0, 0, Vector2(0.6, 0.49943376), -5.7428117, 0.0, 0, 0]
+point_count = 5
 
 [node name="Player" type="Node2D" unique_id=1144768501]
-modulate = Color(1, 1, 1, 0.74509805)
 z_as_relative = false
 script = ExtResource("1_onrkg")
 crew = SubResource("Resource_hqtel")
-vitesse = 35.0
-base_handpass = 4.0
 ccharge_handpass = SubResource("Curve_st2lq")
-max_charged_handpass = 1.5
-h_base_handpass = 0.1
 h_ccharge_handpass = SubResource("Curve_d1cup")
-h_max_charged_handpass = 0.1
 ccharge_autopass = SubResource("Curve_jgxua")
-max_charged_autopass = 2.8
-h_base_autopass = 0.1
 h_ccharge_autopass = SubResource("Curve_ixm2p")
-h_max_charged_autopass = 0.1
-base_shoot = 15.0
-ccharge_shoot = SubResource("Curve_hynx1")
-max_charged_shoot = 20.0
 frottements_sol = 0.1
 frottements_aerien = 0.02
 rebond = 0.0
@@ -86,10 +73,20 @@ turn_speed = 20.0
 
 [node name="Looker" type="Node2D" parent="Forward" unique_id=1151195276]
 unique_name_in_owner = true
-position = Vector2(30, 0)
+position = Vector2(56, 0)
 
 [node name="Jump" type="Node" parent="." unique_id=1010511107]
 unique_name_in_owner = true
 script = ExtResource("5_hynx1")
-ccharge_jump = SubResource("Curve_n2eyn")
-ccharge_jump_conversion = SubResource("Curve_crrbi")
+
+[node name="Shoot" type="Node" parent="." unique_id=249112898]
+unique_name_in_owner = true
+script = ExtResource("6_st2lq")
+curve_hratio = SubResource("Curve_n2eyn")
+max_hgain = 12.0
+base_shoot = 22.0
+ccharge_shoot = SubResource("Curve_hynx1")
+max_charged_shoot = 13.0
+mod_recalibrage_distance = 6.0
+mod_recalibrage_hauteur = 0.0
+mod_speed_supression = 0.5
