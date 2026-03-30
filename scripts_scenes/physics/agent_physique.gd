@@ -11,7 +11,7 @@ var acceleration:= Vector2.ZERO
 
 @export var frottements_sol:= 0.2
 @export var frottements_aerien:= 0.1
-@export var hauteur:= 10.0
+@export var hauteur: float = 10.0
 @export var force_grav:= 30.0
 @export var rebond:= 0.9
 
@@ -91,5 +91,6 @@ func checkRebonds():
 
 func _physics_process(delta: float) -> void:
 	if !Engine.is_editor_hint():
-		delta *= zhonya.delta_mod
-		physicUpdate(delta)
+		if zhonya.delta_mod != 0.0:
+			delta *= zhonya.delta_mod
+			physicUpdate(delta)

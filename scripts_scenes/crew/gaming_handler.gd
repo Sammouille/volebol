@@ -3,8 +3,6 @@ extends Node2D
 var current_idx:= -1
 @onready var players_on:= get_children()
 
-@export var scene_ballon: PackedScene
-
 var input_getter:= InputGetter.new()
 
 func change_played_player(player_idx: int):
@@ -22,20 +20,7 @@ func change_played_player(player_idx: int):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("DEBUG_create_ball"):
-		DEBUG_played_player_get_ball()
-
-
-func DEBUG_played_player_get_ball():
-	var nouveau_ballon := scene_ballon.instantiate()
-	nouveau_ballon.name = "ballon_0"
-	%BoiteBallons.add_child(nouveau_ballon)
-	%BoiteBallons.ballon_actif = nouveau_ballon
-	nouveau_ballon.active = true
-	nouveau_ballon.holding_player = players_on[current_idx]
-	players_on[current_idx].ballon_tenu = nouveau_ballon
-	nouveau_ballon.hauteur = players_on[current_idx].hauteur + 140
-	nouveau_ballon.actualiserScale()
-	nouveau_ballon.apply_physics = false
+		%BoiteBallons.playerGetBallon(players_on[current_idx])
 
 func _ready() -> void:
 	change_played_player(0)

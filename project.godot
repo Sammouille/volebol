@@ -28,6 +28,11 @@ enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
 
 Zhonya=""
 BoiteBallons=""
+GymHandler=""
+
+[gui]
+
+theme/custom_font="uid://brd8x165fjess"
 
 [input]
 

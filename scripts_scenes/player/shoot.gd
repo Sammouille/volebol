@@ -21,6 +21,7 @@ func updateShoot(input_getter: InputGetter):
 		%Forward.charge = ccharge_shoot.sample_baked(input_getter.charge_shoot)
 		tryLockBallon()
 		if ballon_vise != null:
+			ballon_vise.aiming_crew = player.crew
 			if ballon_vise.hauteur < curve_hratio.max_domain + player.hauteur and ballon_vise.hauteur > curve_hratio.min_domain + player.hauteur:
 				ballon_vise.aimed = true
 				ballon_vise.aimed_ratio = curve_hratio.sample_baked(ballon_vise.hauteur - player.hauteur)
@@ -54,6 +55,8 @@ func tryShoot(charge: float):
 						shoot(charge, ballon)
 
 func shoot(charge: float, ballon: Ballon):
+	ballon.touched = true
+	ballon.last_crew = player.crew
 	var charged_power: float
 	if charge <= ccharge_shoot.max_domain:
 		charged_power = ccharge_shoot.sample_baked(charge) * max_charged_shoot
@@ -62,7 +65,7 @@ func shoot(charge: float, ballon: Ballon):
 		
 	var hauteur_frappe = ballon.hauteur - player.hauteur
 	var height_power: float
-	if ballon.hauteur <= curve_hratio.max_domain:
+	if hauteur_frappe <= curve_hratio.max_domain:
 		height_power = curve_hratio.sample_baked(hauteur_frappe) * max_hgain
 	else:
 		height_power = curve_hratio.sample_baked(1.0) * max_hgain
@@ -70,14 +73,19 @@ func shoot(charge: float, ballon: Ballon):
 	
 	var total_power: Vector2 = %Forward.current_aim.normalized() *(base_shoot + charged_power + height_power)
 	
-	var estimated_frames_to_net:= int(ballon.position.x / (total_power.x * 0.9))
+	var estimated_frames_to_net:= absi(ballon.position.x / (total_power.x * 0.9))
 	
-	var recalibrage_distance:= absf(estimated_frames_to_net * .1 * mod_recalibrage_distance)
-	var recalibrage_hauteur: float = (243.0 - minf(hauteur_frappe, 220.0)) * 0.1 * mod_recalibrage_hauteur
+	var recalibrage_distance:= estimated_frames_to_net * mod_recalibrage_distance
+	var recalibrage_hauteur: float = ((243.0 - (hauteur_frappe + player.hauteur))/ (estimated_frames_to_net * 0.5)) * mod_recalibrage_hauteur
 	var recalibrage = minf(recalibrage_distance + recalibrage_hauteur, total_power.length())
 	
-	total_power = total_power.normalized() * (maxf(total_power.length() - (recalibrage*mod_speed_supression), base_shoot))
+	total_power = total_power.normalized() * (maxf(total_power.length() - recalibrage*mod_speed_supression, base_shoot))
 	
+	print(" XXX NOUVELLE FRAPPE XXX")
+	print("
+hauteur player: " + str(player.hauteur) + "
+surrelevation ballon: " + str(hauteur_frappe) + "
+frames estimées avant filet: " + str(estimated_frames_to_net))
 	print("
 RECALIBRAGE =========")
 	print("distance up: "+str(recalibrage_distance) + "
@@ -90,5 +98,6 @@ puissance horizontale: "+str(total_power))
 PUISSANCE ==========")
 	print("charge shoot: "+ str(charged_power))
 	print("hauteur shoot: "+ str(height_power))
+	player.zhonya.smashStop(total_power.length(), recalibrage_hauteur)
 	ballon.aimed = false
 	ballon.aimed_ratio = 0.0

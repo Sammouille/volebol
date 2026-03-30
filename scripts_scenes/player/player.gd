@@ -116,5 +116,5 @@ func updateCharges(charge_pass: float, charge_shoot: float):
 #func _process(delta: float) -> void:
 	#if played:
 		#if hauteur != 0.0:
-			#print("Hauteur: %.2f m" % hauteur*.01)
+			#print("Hauteur: %.2f m" % (hauteur * .01))
 		#print("Vitesse: %.2f m/s" % (velocite.length() * 1.2))

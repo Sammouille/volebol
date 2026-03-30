@@ -1,13 +1,36 @@
 [gd_scene format=3 uid="uid://bdyqqejrghx68"]
 
+[ext_resource type="Script" uid="uid://crfj28egw7bra" path="res://scripts_scenes/gym/gym.gd" id="1_13ler"]
 [ext_resource type="Script" uid="uid://btrvc5edi8oxw" path="res://scripts_scenes/gym/zhonya.gd" id="1_exlq5"]
 [ext_resource type="Script" uid="uid://cmr6nsg774cjv" path="res://scripts_scenes/crew/gaming_handler.gd" id="1_n5wjn"]
+[ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_0ptsj"]
 [ext_resource type="Script" uid="uid://b6wqvc510boft" path="res://scripts_scenes/gym/terrain.gd" id="3_gk1jr"]
 [ext_resource type="PackedScene" uid="uid://dihr5fgsrlfjj" path="res://scripts_scenes/ballon/ballon.tscn" id="3_rgj0q"]
+[ext_resource type="Script" uid="uid://c0o18kvstfn42" path="res://scripts_scenes/gym/vfx_terrain.gd" id="5_0ptsj"]
+[ext_resource type="Script" uid="uid://c6daw3efqtd3u" path="res://scripts_scenes/gym/camera_2d.gd" id="5_5vo2v"]
 [ext_resource type="PackedScene" uid="uid://nu7mpvcx61dm" path="res://scripts_scenes/player/player.tscn" id="5_n5wjn"]
 [ext_resource type="Script" uid="uid://csjw56ia02fnf" path="res://scripts_scenes/gym/boite_ballons.gd" id="6_l3lxg"]
+[ext_resource type="Script" uid="uid://gu42a8yl4sqk" path="res://scripts_scenes/ballon/impacter.gd" id="8_i2ax4"]
+[ext_resource type="Script" uid="uid://qjeebjfaknws" path="res://scripts_scenes/gym/panneau_des_scores.gd" id="10_r7jk3"]
 
-[node name="Gym" type="Node2D" unique_id=1745283274]
+[sub_resource type="Resource" id="Resource_i2ax4"]
+script = ExtResource("2_0ptsj")
+color = Color(0.58429766, 0.042127177, 0.15317884, 1)
+downed_color = Color(0.25541443, 0.0002082723, 1.2032688e-08, 1)
+libero_color = Color(0.9999843, 0.5626822, 0.57090235, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
+[sub_resource type="Resource" id="Resource_5vo2v"]
+script = ExtResource("2_0ptsj")
+color = Color(0.41061407, 0.14309785, 0.99999994, 1)
+downed_color = Color(0.16797674, 0.10815748, 0.34187958, 1)
+libero_color = Color(0.68522155, 0.6391617, 0.9743822, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
+[node name="Gym" type="Node2D" unique_id=1745283274 groups=["GymHandler"]]
+script = ExtResource("1_13ler")
+equipe_gauche = SubResource("Resource_i2ax4")
+equipe_droite = SubResource("Resource_5vo2v")
 
 [node name="Zhonya" type="Node" parent="." unique_id=861837198 groups=["Zhonya"]]
 script = ExtResource("1_exlq5")
@@ -21,29 +44,89 @@ couleur_sol = Color(0.41357413, 0.18958604, 0.22651654, 1)
 couleur_bande = Color(0.91859436, 0.79811287, 0.5563978, 1)
 
 [node name="Camera2D" type="Camera2D" parent="Terrain" unique_id=2088095385]
+unique_name_in_owner = true
+zoom = Vector2(0.8, 0.8)
+script = ExtResource("5_5vo2v")
 
 [node name="CrewHandler" type="Node2D" parent="Terrain" unique_id=1321448907]
 script = ExtResource("1_n5wjn")
-scene_ballon = ExtResource("3_rgj0q")
 
 [node name="Player6" parent="Terrain/CrewHandler" unique_id=1054198080 instance=ExtResource("5_n5wjn")]
 position = Vector2(-211, 359)
+crew = SubResource("Resource_i2ax4")
 
 [node name="Player5" parent="Terrain/CrewHandler" unique_id=1079525473 instance=ExtResource("5_n5wjn")]
 position = Vector2(-201, 12)
+crew = SubResource("Resource_i2ax4")
 
 [node name="Player4" parent="Terrain/CrewHandler" unique_id=2107973400 instance=ExtResource("5_n5wjn")]
 position = Vector2(-195, -303)
+crew = SubResource("Resource_i2ax4")
 
 [node name="Player3" parent="Terrain/CrewHandler" unique_id=2146299651 instance=ExtResource("5_n5wjn")]
 position = Vector2(-727, -308)
+crew = SubResource("Resource_i2ax4")
 
 [node name="Player2" parent="Terrain/CrewHandler" unique_id=4522613 instance=ExtResource("5_n5wjn")]
-position = Vector2(-736, 5)
+position = Vector2(-600, -4)
+crew = SubResource("Resource_i2ax4")
 
 [node name="Player" parent="Terrain/CrewHandler" unique_id=1144768501 instance=ExtResource("5_n5wjn")]
 position = Vector2(-740, 316)
+crew = SubResource("Resource_i2ax4")
+
+[node name="VfxTerrain" type="Node2D" parent="Terrain" unique_id=2090876128]
+unique_name_in_owner = true
+z_as_relative = false
+script = ExtResource("5_0ptsj")
+
+[node name="Impacter" type="Node2D" parent="Terrain/VfxTerrain" unique_id=803781415]
+unique_name_in_owner = true
+clip_children = 2
+script = ExtResource("8_i2ax4")
+
+[node name="PanneauDesScores" type="Control" parent="Terrain/VfxTerrain/Impacter" unique_id=1228208174]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -908.0
+offset_top = -458.0
+offset_right = 908.0
+offset_bottom = 458.0
+script = ExtResource("10_r7jk3")
+equipe_gauche = SubResource("Resource_i2ax4")
+equipe_droite = SubResource("Resource_5vo2v")
+
+[node name="ScoreGauche" type="RichTextLabel" parent="Terrain/VfxTerrain/Impacter/PanneauDesScores" unique_id=848469259]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 908.0
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center][font_size=777]0"
+scroll_active = false
+
+[node name="ScoreDroite" type="RichTextLabel" parent="Terrain/VfxTerrain/Impacter/PanneauDesScores" unique_id=1493433374]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -908.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[center][font_size=777]0"
+scroll_active = false
 
 [node name="BoiteBallons" type="Node2D" parent="Terrain" unique_id=1209078299 groups=["BoiteBallons"]]
 unique_name_in_owner = true
 script = ExtResource("6_l3lxg")
+scene_ballon = ExtResource("3_rgj0q")
+
+[connection signal="ballon_created" from="Terrain/BoiteBallons" to="." method="suiviNouveauBallon"]

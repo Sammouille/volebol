@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-@onready var boite_ballons:= get_tree().get_first_node_in_group("BoiteBallons")
+@onready var gym:= get_tree().get_first_node_in_group("GymHandler")
 
 @export var turn_speed:= 1.0
 
@@ -35,8 +35,8 @@ func _physics_process(delta: float) -> void:
 				current_aim = current_aim.slerp(last_aim, turn_speed * delta)
 			
 			look_at(global_position + current_aim)
-		elif boite_ballons.ballon_actif:
-			look_at(boite_ballons.ballon_actif.global_position)
+		elif gym.ballon_actif:
+			look_at(gym.ballon_actif.global_position)
 			#look_at(last_aim)
 			#print(global_position)
 			#print(last_aim)

@@ -4,10 +4,18 @@
 [ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_ug3kc"]
 [ext_resource type="Script" uid="uid://bfxpqgqvh752k" path="res://scripts_scenes/ballon/ballon_sprite.gd" id="3_ug3kc"]
 
-[sub_resource type="Resource" id="Resource_gk1jr"]
+[sub_resource type="Resource" id="Resource_4ewo4"]
 script = ExtResource("2_ug3kc")
-color = Color(0.50039816, 0.42664316, 0.80748993, 1)
-libero_color = Color(0.7761101, 0.7638154, 0.9921538, 1)
+color = Color(0.58429766, 0.042127177, 0.15317884, 1)
+downed_color = Color(0.25541443, 0.0002082723, 1.2032688e-08, 1)
+libero_color = Color(0.9999843, 0.5626822, 0.57090235, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
+[sub_resource type="Resource" id="Resource_70jll"]
+script = ExtResource("2_ug3kc")
+color = Color(0.41061407, 0.14309785, 0.99999994, 1)
+downed_color = Color(0.16797674, 0.10815748, 0.34187958, 1)
+libero_color = Color(0.68522155, 0.6391617, 0.9743822, 1)
 metadata/_custom_type_script = "uid://di745a8aj6pci"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2eilv"]
@@ -16,7 +24,8 @@ radius = 25.0
 [node name="Balle" type="Node2D" unique_id=1998143594]
 z_as_relative = false
 script = ExtResource("1_4weii")
-last_crew = SubResource("Resource_gk1jr")
+aiming_crew = SubResource("Resource_4ewo4")
+last_crew = SubResource("Resource_70jll")
 couleur = Color(1, 1, 1, 1)
 frottements_sol = 0.01
 frottements_aerien = 0.01
@@ -29,4 +38,5 @@ script = ExtResource("3_ug3kc")
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1409884330]
+visible = false
 shape = SubResource("CircleShape2D_2eilv")

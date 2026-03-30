@@ -34,8 +34,8 @@ point_count = 3
 radius = 72.0
 
 [sub_resource type="Curve" id="Curve_n2eyn"]
-_limits = [0.0, 1.0, 120.0, 245.7485]
-_data = [Vector2(120, 0), 0.0, 0.0, 0, 0, Vector2(177.42514, 1), 0.0, 0.0, 0, 0, Vector2(225.62874, 1), 0.0, 0.0, 0, 0, Vector2(245.7485, 0), 0.0003651274, 0.0, 0, 0]
+_limits = [0.0, 1.0, 135.0, 250.0]
+_data = [Vector2(145.32935, 0), 0.0, 0.0, 0, 0, Vector2(165.64372, 1), 0.0, 0.0, 0, 0, Vector2(220.98148, 1), 0.0, 0.0, 0, 0, Vector2(240.4179, 0), 0.0003651274, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="Curve" id="Curve_hynx1"]
@@ -50,7 +50,10 @@ crew = SubResource("Resource_hqtel")
 ccharge_handpass = SubResource("Curve_st2lq")
 h_ccharge_handpass = SubResource("Curve_d1cup")
 ccharge_autopass = SubResource("Curve_jgxua")
+max_charged_autopass = 6.0
+h_base_autopass = 15.0
 h_ccharge_autopass = SubResource("Curve_ixm2p")
+h_max_charged_autopass = 7.0
 frottements_sol = 0.1
 frottements_aerien = 0.02
 rebond = 0.0
@@ -87,6 +90,6 @@ max_hgain = 12.0
 base_shoot = 22.0
 ccharge_shoot = SubResource("Curve_hynx1")
 max_charged_shoot = 13.0
-mod_recalibrage_distance = 6.0
-mod_recalibrage_hauteur = 0.0
-mod_speed_supression = 0.5
+mod_recalibrage_distance = 0.6
+mod_recalibrage_hauteur = 0.5
+mod_speed_supression = 0.6
