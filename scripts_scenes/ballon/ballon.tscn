@@ -28,7 +28,8 @@ aiming_crew = SubResource("Resource_4ewo4")
 last_crew = SubResource("Resource_70jll")
 couleur = Color(1, 1, 1, 1)
 frottements_sol = 0.01
-frottements_aerien = 0.01
+frottements_aerien = 0.0
+rebond = 0.7
 
 [node name="Sprite" type="Node2D" parent="." unique_id=1176416498]
 unique_name_in_owner = true

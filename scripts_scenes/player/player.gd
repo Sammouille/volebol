@@ -9,6 +9,7 @@ class_name Player
 @export var vitesse:= 70.0
 
 @onready var jumper:= %Jump
+@onready var forward:= %Forward
 
 @export_category("Handpass")
 @export var base_handpass:= 4.0

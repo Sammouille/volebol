@@ -7,7 +7,8 @@ var current_precis_size:= 0.0
 var current_large_size:= 0.0
 var current_mod_contour:= 0.0
 
-var color:= Color()
+var color:= Color(0.5, 0.5, 0.5, 1.0)
+var color_precis:= Color()
 
 var centre_impact:= Vector2.ZERO
 
@@ -26,11 +27,12 @@ var large_mod_contour:= 0.1
 signal fullscreened
 signal fullscreen_began
 
-func setup(_color: Color, puissance_impact: float, position_impact: Vector2):
+func setup(_color: Color, _color_precis: Color, puissance_impact: float, position_impact: Vector2):
 	active = true
 	centre_impact = position_impact
 	color = _color
 	color.a = max_opacity
+	color_precis = _color_precis
 	show()
 	evolution()
 
@@ -58,5 +60,5 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func _draw() -> void:
-	draw_circle(centre_impact, current_precis_size, color, true)
+	draw_circle(centre_impact, current_precis_size, color_precis, true)
 	draw_circle(centre_impact, current_large_size, color, false, current_large_size * current_mod_contour)

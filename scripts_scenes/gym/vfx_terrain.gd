@@ -10,4 +10,4 @@ func marquerPoint(ballon: Ballon,  last_velocite: Vector2, last_h_velocite: floa
 	#add_child(impact)
 	#impact.name = "impact_"+str(impacts.size())
 	#impacts.append(impact)
-	%Impacter.setup(crew.downed_color, last_h_velocite*mod_himpact + last_velocite.length()*mod_impact, ballon.position)
+	%Impacter.setup(crew.downed_color, crew.color, last_h_velocite*mod_himpact + last_velocite.length()*mod_impact, ballon.position)

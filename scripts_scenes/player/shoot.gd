@@ -77,6 +77,10 @@ func shoot(charge: float, ballon: Ballon):
 	
 	var recalibrage_distance:= estimated_frames_to_net * mod_recalibrage_distance
 	var recalibrage_hauteur: float = ((243.0 - (hauteur_frappe + player.hauteur))/ (estimated_frames_to_net * 0.5)) * mod_recalibrage_hauteur
+	if height_power != max_hgain:
+		recalibrage_hauteur+= max_hgain - height_power
+	if total_power.y != 0.0:
+		recalibrage_hauteur -= absf(total_power.normalized().y * 12.0)
 	var recalibrage = minf(recalibrage_distance + recalibrage_hauteur, total_power.length())
 	
 	total_power = total_power.normalized() * (maxf(total_power.length() - recalibrage*mod_speed_supression, base_shoot))
@@ -98,6 +102,6 @@ puissance horizontale: "+str(total_power))
 PUISSANCE ==========")
 	print("charge shoot: "+ str(charged_power))
 	print("hauteur shoot: "+ str(height_power))
-	player.zhonya.smashStop(total_power.length(), recalibrage_hauteur)
+	player.zhonya.smashStop(total_power.length(), recalibrage_hauteur, player, total_power.normalized())
 	ballon.aimed = false
 	ballon.aimed_ratio = 0.0

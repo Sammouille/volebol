@@ -50,8 +50,8 @@ crew = SubResource("Resource_hqtel")
 ccharge_handpass = SubResource("Curve_st2lq")
 h_ccharge_handpass = SubResource("Curve_d1cup")
 ccharge_autopass = SubResource("Curve_jgxua")
-max_charged_autopass = 6.0
-h_base_autopass = 15.0
+max_charged_autopass = 4.0
+h_base_autopass = 13.0
 h_ccharge_autopass = SubResource("Curve_ixm2p")
 h_max_charged_autopass = 7.0
 frottements_sol = 0.1
@@ -81,15 +81,17 @@ position = Vector2(56, 0)
 [node name="Jump" type="Node" parent="." unique_id=1010511107]
 unique_name_in_owner = true
 script = ExtResource("5_hynx1")
+big_jump = 8
+bj_speed_to_height = 0.6
 
 [node name="Shoot" type="Node" parent="." unique_id=249112898]
 unique_name_in_owner = true
 script = ExtResource("6_st2lq")
 curve_hratio = SubResource("Curve_n2eyn")
-max_hgain = 12.0
-base_shoot = 22.0
+max_hgain = 8.0
+base_shoot = 14.7
 ccharge_shoot = SubResource("Curve_hynx1")
-max_charged_shoot = 13.0
-mod_recalibrage_distance = 0.6
-mod_recalibrage_hauteur = 0.5
+max_charged_shoot = 8.7
+mod_recalibrage_distance = 0.4
+mod_recalibrage_hauteur = 0.8
 mod_speed_supression = 0.6
