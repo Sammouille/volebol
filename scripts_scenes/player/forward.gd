@@ -10,10 +10,6 @@ var last_aim:= Vector2.RIGHT * 30.0
 
 var charge:= 0.0
 
-func _ready() -> void:
-	if !Engine.is_editor_hint():
-		Input.mouse_mode = Input.MouseMode.MOUSE_MODE_CONFINED
-
 func _process(delta: float) -> void:
 	queue_redraw()
 

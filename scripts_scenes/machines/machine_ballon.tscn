@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dqpy7ru4skkb5"]
+
+[ext_resource type="Script" uid="uid://cv5cqcarffbmr" path="res://scripts_scenes/machines/machine_ballon.gd" id="1_76chs"]
+[ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_5omqi"]
+[ext_resource type="Script" uid="uid://cc8lw1u1gyoj0" path="res://scripts_scenes/player/shoot.gd" id="3_x8vs6"]
+[ext_resource type="Script" uid="uid://ckl3w2hu2eb0w" path="res://scripts_scenes/player/player_sprite.gd" id="4_bkplk"]
+[ext_resource type="Script" uid="uid://c0kv4xjry0kqd" path="res://scripts_scenes/machines/forward_machine.gd" id="5_5omqi"]
+
+[sub_resource type="Resource" id="Resource_gky3a"]
+script = ExtResource("2_5omqi")
+downed_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+libero_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
+[sub_resource type="Curve" id="Curve_if6sl"]
+_limits = [0.0, 1.0, 135.0, 250.0]
+_data = [Vector2(145.32935, 0), 0.0, 0.0, 0, 0, Vector2(165.64372, 1), 0.0, 0.0, 0, 0, Vector2(220.98148, 1), 0.0, 0.0, 0, 0, Vector2(240.4179, 0), 0.0003651274, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_8xj61"]
+_limits = [0.0, 1.0, 0.0, 0.6]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15449104, 0), 0.0, 0.0, 0, 0, Vector2(0.3017964, 1), 0.0, 0.0, 0, 0, Vector2(0.4491018, 1), 0.0, 0.0, 0, 0, Vector2(0.6, 0.49943376), -5.7428117, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5omqi"]
+radius = 72.0
+
+[node name="MachineBallon" type="Node2D" unique_id=2131113815]
+script = ExtResource("1_76chs")
+crew = SubResource("Resource_gky3a")
+duree_replacement = 0.2
+frequence = 5.0
+
+[node name="Shoot" type="Node" parent="." unique_id=144412611]
+unique_name_in_owner = true
+script = ExtResource("3_x8vs6")
+curve_hratio = SubResource("Curve_if6sl")
+max_hgain = 8.0
+base_shoot = 14.7
+ccharge_shoot = SubResource("Curve_8xj61")
+max_charged_shoot = 8.7
+mod_recalibrage_distance = 0.4
+mod_recalibrage_hauteur = 0.8
+mod_speed_supression = 0.6
+
+[node name="Sprite" type="Node2D" parent="." unique_id=1318085408]
+unique_name_in_owner = true
+script = ExtResource("4_bkplk")
+couleur = Color(0.44291076, 0.44291076, 0.44291073, 1)
+
+[node name="Forward" type="Node2D" parent="." unique_id=1672379476]
+unique_name_in_owner = true
+rotation = -3.1415927
+script = ExtResource("5_5omqi")
+turn_speed = 20.0
+
+[node name="Looker" type="Node2D" parent="Forward" unique_id=1177271430]
+unique_name_in_owner = true
+position = Vector2(56, 0)
+
+[node name="Envergure" type="Area2D" parent="." unique_id=644191772]
+unique_name_in_owner = true
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Envergure" unique_id=1183560144]
+shape = SubResource("CircleShape2D_5omqi")

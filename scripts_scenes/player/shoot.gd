@@ -1,6 +1,6 @@
 extends Node
 
-@onready var player : Player = get_parent()
+@onready var player : AgentPhysique = get_parent()
 
 @export var curve_hratio: Curve
 @export var max_hgain:= 20.0
@@ -29,6 +29,7 @@ func updateShoot(input_getter: InputGetter):
 				ballon_vise.aimed = false
 	else:
 		%Forward.charge = ccharge_shoot.sample_baked(input_getter.charge_shoot)
+	
 	if input_getter.input_shoot:
 		tryShoot(input_getter.input_shoot)
 

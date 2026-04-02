@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://2j2v6vtp0l4f" path="res://scripts_scenes/player/forward.gd" id="4_jgxua"]
 [ext_resource type="Script" uid="uid://cvxrxhi4y75k8" path="res://scripts_scenes/player/jump.gd" id="5_hynx1"]
 [ext_resource type="Script" uid="uid://cc8lw1u1gyoj0" path="res://scripts_scenes/player/shoot.gd" id="6_st2lq"]
+[ext_resource type="Script" uid="uid://drdn0a0r5qdtl" path="res://scripts_scenes/player/reception.gd" id="7_d1cup"]
 
 [sub_resource type="Resource" id="Resource_hqtel"]
 script = ExtResource("2_i3pqv")
@@ -95,3 +96,7 @@ max_charged_shoot = 8.7
 mod_recalibrage_distance = 0.4
 mod_recalibrage_hauteur = 0.8
 mod_speed_supression = 0.6
+
+[node name="Reception" type="Node" parent="." unique_id=1630585390]
+unique_name_in_owner = true
+script = ExtResource("7_d1cup")

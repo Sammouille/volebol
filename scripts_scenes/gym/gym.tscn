@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://nu7mpvcx61dm" path="res://scripts_scenes/player/player.tscn" id="5_n5wjn"]
 [ext_resource type="Script" uid="uid://csjw56ia02fnf" path="res://scripts_scenes/gym/boite_ballons.gd" id="6_l3lxg"]
 [ext_resource type="Script" uid="uid://gu42a8yl4sqk" path="res://scripts_scenes/ballon/impacter.gd" id="8_i2ax4"]
+[ext_resource type="PackedScene" uid="uid://dqpy7ru4skkb5" path="res://scripts_scenes/machines/machine_ballon.tscn" id="8_ne6fi"]
 [ext_resource type="Script" uid="uid://qjeebjfaknws" path="res://scripts_scenes/gym/panneau_des_scores.gd" id="10_r7jk3"]
 [ext_resource type="Script" uid="uid://c62f3ix087mck" path="res://scripts_scenes/gym/smasher.gd" id="11_thq03"]
 
@@ -75,6 +76,9 @@ crew = SubResource("Resource_i2ax4")
 [node name="Player" parent="Terrain/CrewHandler" unique_id=1144768501 instance=ExtResource("5_n5wjn")]
 position = Vector2(-740, 316)
 crew = SubResource("Resource_i2ax4")
+
+[node name="MachineBallon" parent="Terrain" unique_id=2131113815 instance=ExtResource("8_ne6fi")]
+position = Vector2(478, 6)
 
 [node name="VfxTerrain" type="Node2D" parent="Terrain" unique_id=2090876128]
 unique_name_in_owner = true

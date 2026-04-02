@@ -38,7 +38,8 @@ func updatePlayer(input_getter: InputGetter):
 	
 	%Jump.updateJump(input_getter, grounded)
 	
-	%Shoot.updateShoot(input_getter)
+	if ballon_tenu == null:
+		%Shoot.updateShoot(input_getter)
 	
 	
 	if input_getter.input_pass: 
@@ -84,7 +85,7 @@ func handPass(charge: float, ballon: Ballon):
 
 func autopass(charge: float):
 	ballon_tenu.apply_physics = true
-	ballon_tenu.holding_player = null
+	ballon_tenu.holding_agent = null
 	var charged_power = 0.0
 	if charge <= ccharge_autopass.max_domain:
 		charged_power = ccharge_autopass.sample_baked(charge) * max_charged_autopass
@@ -114,7 +115,7 @@ func updateCharges(charge_pass: float, charge_shoot: float):
 		
 
 
-#func _process(delta: float) -> void:
+#func _agent_process(delta: float) -> void:
 	#if played:
 		#if hauteur != 0.0:
 			#print("Hauteur: %.2f m" % (hauteur * .01))

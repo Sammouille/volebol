@@ -60,9 +60,9 @@ func physicUpdate(delta: float):
 			grounded = true
 			velocite -= velocite * frottements_sol
 			h_velocite -= h_velocite * frottements_sol
-	else:
-		velocite= Vector2.ZERO
-		h_velocite= 0.0
+	#else:
+		#velocite= Vector2.ZERO
+		#h_velocite= 0.0
 	
 	actualiserScale()
 	
@@ -89,8 +89,12 @@ func checkRebonds():
 			h_velocite = 0.0
 			hauteur = 0.0
 
+func _agent_process(delta: float):
+	pass
+
 func _physics_process(delta: float) -> void:
 	if !Engine.is_editor_hint():
 		if zhonya.delta_mod != 0.0:
 			delta *= zhonya.delta_mod
+			_agent_process(delta)
 			physicUpdate(delta)

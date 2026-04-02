@@ -15,7 +15,10 @@ func _draw() -> void:
 		else:
 			draw_circle(Vector2.ZERO, SIZE, get_parent().last_crew.color, false, 10.0)
 			if get_parent().aimed:
-				draw_circle(Vector2.ZERO, SIZE * 1.5, get_parent().aiming_crew.libero_color, false, 1.0 + abs(1.0-get_parent().aimed_ratio) * 20.0)
+				if get_parent().aimed_ratio > 0.44:
+					draw_circle(Vector2.ZERO, SIZE * 1.5, get_parent().aiming_crew.libero_color, false, 15.0)
+				else:
+					draw_circle(Vector2.ZERO, SIZE * 1.5, get_parent().aiming_crew.downed_color, false, 15.0)
 	else:
 		draw_circle(Vector2.ZERO, SIZE, _up_color, false, 10.0)
 	

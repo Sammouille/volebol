@@ -18,8 +18,9 @@ func getTimePassedString():
 	var milliseconds = int((time_passed - int(time_passed)) * 100)
 	return "%02d:%02d.%02d " % [minutes,seconds,milliseconds]
 
-func smashStop(puissance_horizontale: float, puissance_verticale: float, player: Player, angle: Vector2):
+func smashStop(puissance_horizontale: float, puissance_verticale: float, agent: AgentPhysique, angle: Vector2):
 	stopped = true
+	@warning_ignore("narrowing_conversion")
 	var frames_arret : int = puissance_horizontale / denominateur_frames_horizontal
 #if frames_arret >= flash_min_frame:
 	index_stop = frames_arret
@@ -30,9 +31,10 @@ func smashStop(puissance_horizontale: float, puissance_verticale: float, player:
 		hit_type += 1 
 	if puissance_verticale < 0.0:
 		%Camera2D.pression = true
+		@warning_ignore("narrowing_conversion")
 		index_stop *= mod_piquet
 		hit_type +=1
-	%Smasher.fx_hit(player.position, hit_type, player.crew.color, angle, frames_arret)
+	%Smasher.fx_hit(agent, hit_type, angle, frames_arret)
 	print(index_stop)
 
 func _physics_process(delta: float) -> void:
