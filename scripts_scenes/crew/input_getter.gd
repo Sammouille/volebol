@@ -9,6 +9,8 @@ var frame_jump:= 0
 var charge_pass:= 0.0
 var input_pass:= 0.0
 
+var reception:= false
+
 var charge_shoot:= 0.0
 var input_shoot:=0.0
 
@@ -37,7 +39,9 @@ func updateInput(delta: float):
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		charge_pass += delta
+		reception = true
 	else:
+		reception = false
 		if charge_pass != 0.0:
 			input_pass = charge_pass
 			charge_pass = 0.0

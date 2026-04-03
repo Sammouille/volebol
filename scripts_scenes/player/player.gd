@@ -32,7 +32,7 @@ var played:= false
 
 var ballon_tenu: Ballon = null
 
-func updatePlayer(input_getter: InputGetter):
+func updatePlayer(input_getter: InputGetter, delta: float):
 	if input_getter.input_deplacement != Vector2.ZERO:
 		deplacement(input_getter.input_deplacement)
 	
@@ -40,6 +40,7 @@ func updatePlayer(input_getter: InputGetter):
 	
 	if ballon_tenu == null:
 		%Shoot.updateShoot(input_getter)
+		%Reception.updateReception(input_getter, delta)
 	
 	
 	if input_getter.input_pass: 

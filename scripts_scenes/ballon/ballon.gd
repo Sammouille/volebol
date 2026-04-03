@@ -36,13 +36,15 @@ func disparition():
 	queue_free()
 
 func _agent_process(delta: float):
+	if !apply_physics:
+		print(apply_physics)
 	if touched_ground and velocite.length() < 0.3 and h_velocite < 0.1:
 		z_index = -1
 		disparition()
 		
 	
-	if velocite.length() >= 4.0:
-		print(velocite.length())
+	#if velocite.length() >= 4.0:
+		#print(velocite.length())
 	
 	if absf(position.x) < 25.0 and hauteur > 200.0:
 		print("

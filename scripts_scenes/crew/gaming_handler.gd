@@ -26,7 +26,6 @@ func _ready() -> void:
 	change_played_player(0)
 
 func _process(delta: float) -> void:
-	
 	input_getter.updateInput(delta)
 	
 	
@@ -36,5 +35,4 @@ func _process(delta: float) -> void:
 		else:
 			change_played_player(current_idx + int(input_getter.input_changement))
 	
-	players_on[current_idx].updatePlayer(input_getter)
-	
+	players_on[current_idx].updatePlayer(input_getter, delta)
