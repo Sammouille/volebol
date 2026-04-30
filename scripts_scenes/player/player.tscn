@@ -100,3 +100,5 @@ mod_speed_supression = 0.6
 [node name="Reception" type="Node" parent="." unique_id=1630585390]
 unique_name_in_owner = true
 script = ExtResource("7_d1cup")
+vitesse_negation = 1.0
+montee_prog = 1.0

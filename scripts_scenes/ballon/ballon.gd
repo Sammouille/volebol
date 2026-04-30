@@ -56,5 +56,5 @@ PASSAGE AU DESSUS FILET ======")
 			hauteur = holding_agent.hauteur + 140
 		position = holding_agent.position
 		apply_physics = false
-	elif !apply_physics:
-		apply_physics = true
+	#elif !apply_physics:
+		#apply_physics = true
