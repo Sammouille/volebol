@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://bgmtlq7m7hk1k"]
+
+[ext_resource type="Script" uid="uid://86eo7meol8wo" path="res://scripts_scenes/multiplayer/multi_setupper.gd" id="1_1r4t2"]
+[ext_resource type="PackedScene" uid="uid://b8rtdhhrvh368" path="res://scripts_scenes/gym/gym_multi.tscn" id="2_vdgct"]
+[ext_resource type="Script" uid="uid://cyn6diqnf0spj" path="res://scripts_scenes/multiplayer/multiplayer_gate.gd" id="3_6uce4"]
+
+[node name="MultiSetupper" type="Control" unique_id=676037494 node_paths=PackedStringArray("multi_ui", "multi_lobby", "multiplayer_gate")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1r4t2")
+gym_multi_packed = ExtResource("2_vdgct")
+multi_ui = NodePath("Multi_UI")
+multi_lobby = NodePath("Multi_Lobby")
+multiplayer_gate = NodePath("Multiplayer")
+
+[node name="Multi_UI" type="Control" parent="." unique_id=884357042]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Put_Host_IP_ADDR" type="LineEdit" parent="Multi_UI" unique_id=729137944]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 355.0
+offset_right = 518.0
+offset_bottom = 382.0
+
+[node name="InfoAddr" type="RichTextLabel" parent="Multi_UI/Put_Host_IP_ADDR" unique_id=316858306]
+layout_mode = 0
+offset_left = -235.0
+offset_top = -24.0
+offset_right = 5.0
+offset_bottom = 56.0
+text = "Enter host IP ADDR
+(Can be found at : 
+https://whatismyipaddress.com/ )
+Then press Enter !"
+
+[node name="Create_Game" type="Button" parent="Multi_UI" unique_id=428912923]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 464.0
+offset_right = 447.0
+offset_bottom = 538.0
+text = "Create Game"
+
+[node name="CreateGame" type="RichTextLabel" parent="Multi_UI/Create_Game" unique_id=382534324]
+layout_mode = 0
+offset_left = -230.0
+offset_top = 26.0
+offset_right = -14.0
+offset_bottom = 84.0
+text = "Press this if you are the host :"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Multi_UI" unique_id=857446921]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 38.0
+offset_right = 537.0
+offset_bottom = 213.0
+theme_override_font_sizes/normal_font_size = 128
+text = "VOLEBOL"
+
+[node name="LineEdit" type="LineEdit" parent="Multi_UI" unique_id=305152397]
+visible = false
+layout_mode = 0
+offset_left = 656.0
+offset_top = 175.0
+offset_right = 709.8125
+offset_bottom = 202.0
+
+[node name="Multiplayer" type="Node" parent="." unique_id=1894715036]
+script = ExtResource("3_6uce4")
+
+[node name="Multi_Lobby" type="Control" parent="." unique_id=1490263132]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Player_List" type="VBoxContainer" parent="Multi_Lobby" unique_id=26531230]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 79.0
+offset_right = 554.0
+offset_bottom = 119.0
+
+[node name="StartGame" type="Button" parent="Multi_Lobby" unique_id=522588553]
+layout_mode = 0
+offset_left = 499.0
+offset_top = 553.0
+offset_right = 634.0
+offset_bottom = 606.0
+text = "Start Game"
+
+[connection signal="text_submitted" from="Multi_UI/Put_Host_IP_ADDR" to="." method="_on_put_host_ip_addr_text_submitted"]
+[connection signal="pressed" from="Multi_UI/Create_Game" to="." method="_on_create_game_pressed"]
+[connection signal="pressed" from="Multi_Lobby/StartGame" to="." method="_on_start_game_pressed"]

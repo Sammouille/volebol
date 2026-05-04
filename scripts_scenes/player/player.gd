@@ -35,7 +35,7 @@ var ballon_tenu: Ballon = null
 func updatePlayer(input_getter: InputGetter, delta: float):
 	if input_getter.input_deplacement != Vector2.ZERO:
 		deplacement(input_getter.input_deplacement)
-	
+		
 	%Jump.updateJump(input_getter, grounded)
 	
 	if ballon_tenu == null:

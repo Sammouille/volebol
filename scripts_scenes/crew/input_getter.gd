@@ -52,3 +52,13 @@ func updateInput(delta: float):
 		if charge_shoot != 0.0:
 			input_shoot = charge_shoot
 			charge_shoot = 0.0
+
+func set_attributes(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r):
+	input_changement = i_c
+	input_deplacement = i_d
+	frame_jump = f_j
+	charge_pass = c_p
+	input_pass = i_p
+	charge_shoot = c_s
+	input_shoot = i_s
+	reception = r

@@ -1,0 +1,61 @@
+extends Control
+
+@export var gym_multi_packed : PackedScene
+var gym_multi
+
+@export var multi_ui : Control
+@export var multi_lobby : Control
+@export var player_list : VBoxContainer
+@export var multiplayer_gate : Node
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	multiplayer_gate.server_started.connect(create_gym)
+	multiplayer_gate.player_connected.connect(join_gym)
+	print(multiplayer.multiplayer_peer, " alors ", multiplayer.has_multiplayer_peer())
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_create_game_pressed() -> void:
+	multiplayer_gate.create_game()
+
+
+func _on_put_host_ip_addr_text_submitted(new_text: String) -> void:
+	multiplayer_gate.join_game(new_text)
+
+func create_gym():
+	gym_multi = gym_multi_packed.instantiate()
+	multi_ui.hide()
+	multi_lobby.show()
+	print(multiplayer.multiplayer_peer, " alors ", multiplayer.has_multiplayer_peer())
+	gym_multi.is_online = true
+	gym_multi.multiplayer_gate = multiplayer_gate
+	add_child(gym_multi)
+	
+
+func join_gym(multi_id):
+	multiplayer_gate.setup_player.rpc_id(multi_id)
+
+
+func _on_start_game_pressed() -> void:
+	if multiplayer.is_server():
+		var nb_joueureuse = multiplayer_gate.players.size()
+		var joueureuses_ids = multiplayer_gate.players.keys()
+		multiplayer_gate.load_game.rpc(nb_joueureuse,6, joueureuses_ids)
+
+func start_game(nb_joueureuse,crew_size,ids):
+	multi_lobby.hide()
+	var gauche = true
+	for i in nb_joueureuse:
+		gym_multi.créerCrews(crew_size,ids[i],gauche)
+		gauche = !gauche
+
+func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
+	for i in gym_multi.crewhandlers:
+		if i.multiplayer_id == sender_id:
+			i.input_getter.set_attributes(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r)
+			i.execute_input(d)
