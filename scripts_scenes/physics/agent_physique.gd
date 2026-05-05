@@ -42,7 +42,7 @@ func appliquerForce(force: Vector2):
 	acceleration += force
 
 func physicUpdate(delta: float):
-	if !dico:
+	if !dico.is_empty():
 		if multiplayer.is_server() :
 			if apply_physics:
 				pesenteur()

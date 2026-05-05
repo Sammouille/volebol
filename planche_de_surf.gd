@@ -29,6 +29,7 @@ var dico_player_nul:= {
 func ajouterJoueureuse():
 	var nv_dico:= dico_player_nul.duplicate()
 	array_player.append(nv_dico)
+	print(nv_dico)
 	return nv_dico
 
 func ajouterBallon():
