@@ -15,6 +15,8 @@ var acceleration:= Vector2.ZERO
 @export var force_grav:= 30.0
 @export var rebond:= 0.9
 
+var dico: Dictionary
+
 var apply_physics:= true
 var mod_grav:= 1.0
 var grounded:= false
@@ -40,31 +42,63 @@ func appliquerForce(force: Vector2):
 	acceleration += force
 
 func physicUpdate(delta: float):
-	if apply_physics:
-		pesenteur()
-		checkRebonds()
-		
-		velocite += acceleration * delta
-		acceleration = Vector2.ZERO
-		position += velocite
-		
-		h_velocite += h_acceleration * delta
-		h_acceleration = 0.0
-		hauteur += h_velocite
-		
-		if hauteur > 5.0:
-			grounded = false
-			velocite -= velocite * frottements_aerien
-			h_velocite -= h_velocite * frottements_aerien
+	if !dico:
+		if multiplayer.is_server() :
+			if apply_physics:
+				pesenteur()
+				checkRebonds()
+				
+				velocite += acceleration * delta
+				acceleration = Vector2.ZERO
+				position += velocite
+				
+				h_velocite += h_acceleration * delta
+				h_acceleration = 0.0
+				hauteur += h_velocite
+				
+				if hauteur > 5.0:
+					grounded = false
+					velocite -= velocite * frottements_aerien
+					h_velocite -= h_velocite * frottements_aerien
+				else:
+					grounded = true
+					velocite -= velocite * frottements_sol
+					h_velocite -= h_velocite * frottements_sol
+					
+				dico.set("position", position)
+				dico.set("hauteur", hauteur)
 		else:
-			grounded = true
-			velocite -= velocite * frottements_sol
-			h_velocite -= h_velocite * frottements_sol
-	#else:
-		#velocite= Vector2.ZERO
-		#h_velocite= 0.0
-	
-	actualiserScale()
+			position = dico.get("position")
+			hauteur = dico.get("hauteur")
+	else:
+		if apply_physics:
+			pesenteur()
+			checkRebonds()
+			
+			velocite += acceleration * delta
+			acceleration = Vector2.ZERO
+			position += velocite
+			
+			h_velocite += h_acceleration * delta
+			h_acceleration = 0.0
+			hauteur += h_velocite
+			
+			if hauteur > 5.0:
+				grounded = false
+				velocite -= velocite * frottements_aerien
+				h_velocite -= h_velocite * frottements_aerien
+			else:
+				grounded = true
+				velocite -= velocite * frottements_sol
+				h_velocite -= h_velocite * frottements_sol
+		
+		
+		
+		#else:
+			#velocite= Vector2.ZERO
+			#h_velocite= 0.0
+		
+		actualiserScale()
 	
 
 func pesenteur():

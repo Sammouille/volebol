@@ -11,6 +11,8 @@ var gym_multi
 @export var player_name : LineEdit
 @export var player_list : VBoxContainer
 
+var surf: PlancheSurf
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer_gate.server_started.connect(create_gym)
@@ -19,7 +21,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if multiplayer.is_server() and surf:
+		multiplayer_gate.transfer_position.rpc(surf.array_player,surf.array_ballons)
 
 
 
@@ -45,15 +48,17 @@ func create_gym():
 
 func _on_start_game_pressed() -> void:
 	if multiplayer.is_server():
+		surf = PlancheSurf.new()
 		var nb_joueureuse = multiplayer_gate.players.size()
 		var joueureuses_ids = multiplayer_gate.players.keys()
-		multiplayer_gate.load_game.rpc(nb_joueureuse,6, joueureuses_ids)
+		multiplayer_gate.load_game.rpc(nb_joueureuse,6, joueureuses_ids, surf)
 
-func start_game(nb_joueureuse,crew_size,ids):
+func start_game(nb_joueureuse,crew_size,ids, surf):
 	multi_lobby.hide()
+	gym_multi.brancherBoite(surf)
 	var gauche = true
 	for i in nb_joueureuse:
-		gym_multi.créerCrews(crew_size,ids[i],gauche)
+		gym_multi.créerCrews(crew_size,ids[i],gauche, surf)
 		gauche = !gauche
 
 func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
@@ -62,7 +67,12 @@ func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 			i.input_getter.set_attributes(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r)
 			i.execute_input(d)
 
-func add_player_list(pname):
+
+func handle_position_info(array_player,array_ballons):
+	surf.array_player = array_player
+	surf.array_ballons = array_ballons
+	
+func add_player_list():
 	var rtl = RichTextLabel.new()
 	rtl.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	rtl.text = pname
