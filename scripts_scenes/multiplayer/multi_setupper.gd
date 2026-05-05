@@ -72,7 +72,7 @@ func handle_position_info(array_player,array_ballons):
 	surf.array_player = array_player
 	surf.array_ballons = array_ballons
 	
-func add_player_list():
+func add_player_list(pname):
 	var rtl = RichTextLabel.new()
 	rtl.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	rtl.text = pname
