@@ -111,7 +111,7 @@ func _toucheSol():
 	pass
 
 func checkRebonds():
-	if hauteur < 0.0:
+	if hauteur <= 0.0:
 		_toucheSol()
 		hauteur = 0.0
 		h_velocite = -h_velocite * rebond
