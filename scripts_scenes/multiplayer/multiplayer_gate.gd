@@ -12,7 +12,7 @@ const MAX_CO = 8
 
 var players = {}
 
-var player_info = {"default_name":"name"}
+var player_info = "name"
 
 var players_loaded = 0
 
@@ -29,9 +29,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func join_game(addr):
+func join_game(addr,player_name):
 	if addr == "":
 		addr = DEFAULT_SERV_ID
+	player_info = player_name
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_client(addr, PORT)
 	if error :
@@ -39,9 +40,10 @@ func join_game(addr):
 	multiplayer.multiplayer_peer = peer
 	print(peer)
 	
-func create_game():
+func create_game(player_name):
 	var peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(PORT,MAX_CO)
+	player_info = player_name
 	if error :
 		return error
 	multiplayer.multiplayer_peer = peer
@@ -75,7 +77,6 @@ func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id,new_player_info)
-	setup_player.rpc_id(new_player_id,)
 	print("REGISTERED : " ,players, " ", new_player_id)
 	
 	
@@ -106,4 +107,6 @@ func setup_player():
 func get_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 	multisetupper.handle_online_input(multiplayer.get_remote_sender_id(),i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d)
 	
-	
+@rpc("call_local","any_peer","reliable")
+func test_data(a,b,c,d,e,f):
+	print(a," | ",b," | ",c," | ",d," | ",e," | ",f)

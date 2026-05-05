@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://b8rtdhhrvh368" path="res://scripts_scenes/gym/gym_multi.tscn" id="2_vdgct"]
 [ext_resource type="Script" uid="uid://cyn6diqnf0spj" path="res://scripts_scenes/multiplayer/multiplayer_gate.gd" id="3_6uce4"]
 
-[node name="MultiSetupper" type="Control" unique_id=676037494 node_paths=PackedStringArray("multi_ui", "multi_lobby", "multiplayer_gate")]
+[node name="MultiSetupper" type="Control" unique_id=676037494 node_paths=PackedStringArray("multiplayer_gate", "multi_ui", "multi_lobby", "player_name", "player_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,9 +13,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1r4t2")
 gym_multi_packed = ExtResource("2_vdgct")
+multiplayer_gate = NodePath("Multiplayer")
 multi_ui = NodePath("Multi_UI")
 multi_lobby = NodePath("Multi_Lobby")
-multiplayer_gate = NodePath("Multiplayer")
+player_name = NodePath("Multi_UI/Player_Name")
+player_list = NodePath("Multi_Lobby/Player_List")
 
 [node name="Multi_UI" type="Control" parent="." unique_id=884357042]
 anchors_preset = 0
@@ -56,7 +58,7 @@ offset_right = -14.0
 offset_bottom = 84.0
 text = "Press this if you are the host :"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Multi_UI" unique_id=857446921]
+[node name="VolebolTitle" type="RichTextLabel" parent="Multi_UI" unique_id=857446921]
 layout_mode = 0
 offset_left = 39.0
 offset_top = 38.0
@@ -65,13 +67,19 @@ offset_bottom = 213.0
 theme_override_font_sizes/normal_font_size = 128
 text = "VOLEBOL"
 
-[node name="LineEdit" type="LineEdit" parent="Multi_UI" unique_id=305152397]
-visible = false
+[node name="Player_Name" type="LineEdit" parent="Multi_UI" unique_id=305152397]
 layout_mode = 0
-offset_left = 656.0
-offset_top = 175.0
-offset_right = 709.8125
-offset_bottom = 202.0
+offset_left = 833.0
+offset_top = 352.0
+offset_right = 1010.0
+offset_bottom = 382.0
+
+[node name="EnterPlayerName" type="RichTextLabel" parent="Multi_UI/Player_Name" unique_id=109366030]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 6.0
+offset_bottom = 46.0
+text = "Enter your player name :"
 
 [node name="Multiplayer" type="Node" parent="." unique_id=1894715036]
 script = ExtResource("3_6uce4")
@@ -97,6 +105,15 @@ offset_right = 634.0
 offset_bottom = 606.0
 text = "Start Game"
 
+[node name="TestButton" type="Button" parent="." unique_id=596610262]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 94.0
+offset_right = 727.0
+offset_bottom = 167.0
+text = "Test de data"
+
 [connection signal="text_submitted" from="Multi_UI/Put_Host_IP_ADDR" to="." method="_on_put_host_ip_addr_text_submitted"]
 [connection signal="pressed" from="Multi_UI/Create_Game" to="." method="_on_create_game_pressed"]
 [connection signal="pressed" from="Multi_Lobby/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]

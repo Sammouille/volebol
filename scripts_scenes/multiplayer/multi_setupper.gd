@@ -3,10 +3,13 @@ extends Control
 @export var gym_multi_packed : PackedScene
 var gym_multi
 
+@export var multiplayer_gate : Node
+
+@export_group("Multi UI")
 @export var multi_ui : Control
 @export var multi_lobby : Control
+@export var player_name : LineEdit
 @export var player_list : VBoxContainer
-@export var multiplayer_gate : Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,11 +24,13 @@ func _process(delta: float) -> void:
 
 
 func _on_create_game_pressed() -> void:
-	multiplayer_gate.create_game()
+	if check_player_name():
+		multiplayer_gate.create_game(player_name.text)
 
 
 func _on_put_host_ip_addr_text_submitted(new_text: String) -> void:
-	multiplayer_gate.join_game(new_text)
+	if check_player_name():
+		multiplayer_gate.join_game(new_text,player_name.text)
 
 func create_gym():
 	gym_multi = gym_multi_packed.instantiate()
@@ -39,7 +44,7 @@ func create_gym():
 
 func join_gym(multi_id):
 	multiplayer_gate.setup_player.rpc_id(multi_id)
-
+	
 
 func _on_start_game_pressed() -> void:
 	if multiplayer.is_server():
@@ -59,3 +64,24 @@ func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 		if i.multiplayer_id == sender_id:
 			i.input_getter.set_attributes(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r)
 			i.execute_input(d)
+
+func add_player_list():
+	var rtl = RichTextLabel.new()
+	rtl.text = multiplayer_gate.player_info
+	
+func check_player_name() -> bool:
+	if player_name.text != "":
+		return true
+	else :
+		return false
+
+
+
+func _on_test_button_pressed() -> void:
+	var i = [1,5,8]
+	var j = ["toi","moi","nous"]
+	var k = "Ensemble nous sommes"
+	var l = 86
+	var m = {"Player":78,"enne":13}
+	var n = Crew.new()
+	multiplayer_gate.test_data(i,j,k,l,m,n)
