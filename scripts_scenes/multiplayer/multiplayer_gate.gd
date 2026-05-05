@@ -110,3 +110,7 @@ func get_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 @rpc("call_remote","any_peer","reliable")
 func transfer_position(array_player,array_ballon):
 	multisetupper.handle_position_info(array_player,array_ballon)
+
+@rpc("call_local","any_peer", "reliable")
+func creerBallon():
+	

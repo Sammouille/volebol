@@ -5,6 +5,8 @@ extends Node2D
 @export var terrain : Node2D
 @onready var vfx:= %VfxTerrain
 
+var service_gauche:= true
+
 var is_online = false
 var multiplayer_gate : Node
 var battle:= false
@@ -13,6 +15,14 @@ var crewhandlers = []
 var ballon_actif: Ballon
 var ballons_marques: Array[Ballon]
 var ballons_echauffement: Array[Ballon]
+
+func nouveauService():
+	if service_gauche:
+		%BoiteBallons.playerGetBallon(crewhandlers[0].players_on[0])
+	else:
+		%BoiteBallons.playerGetBallon(crewhandlers[1].players_on[0])
+		
+
 
 func suiviNouveauBallon(ballon: Ballon):
 	if battle:
@@ -45,7 +55,15 @@ func marquerBallon(ballon: Ballon, last_velocite: Vector2, last_h_velocite: floa
 
 
 func point(equipe: Crew):
-	pass
+	if equipe == equipe_gauche:
+		service_gauche = true
+	if equipe == equipe_droite:
+		service_gauche = false
+
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("DEBUG_create_ball") and multiplayer.is_server():
+		nouveauService()
 
 func brancherBoite(surf: PlancheSurf):
 	%BoiteBallons.surf = surf

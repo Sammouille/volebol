@@ -52,6 +52,9 @@ script = ExtResource("5_5vo2v")
 [node name="CrewHandler" type="Node2D" parent="Terrain" unique_id=1321448907]
 script = ExtResource("1_n5wjn")
 
+[node name="Node2D" type="Node2D" parent="Terrain/CrewHandler" unique_id=1336743310]
+position = Vector2(-804, 346)
+
 [node name="MachineBallon" parent="Terrain" unique_id=2131113815 instance=ExtResource("8_ne6fi")]
 position = Vector2(478, 6)
 
