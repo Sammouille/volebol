@@ -62,8 +62,11 @@ func point(equipe: Crew):
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("DEBUG_create_ball") and multiplayer.is_server():
-		nouveauService()
+	if Input.is_action_just_pressed("DEBUG_create_ball"):
+		if multiplayer.is_server():
+			multiplayer_gate.creerBallon.rpc()
+		else:
+			nouveauService()
 
 func brancherBoite(surf: PlancheSurf):
 	%BoiteBallons.surf = surf

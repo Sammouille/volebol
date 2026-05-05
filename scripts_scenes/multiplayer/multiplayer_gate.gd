@@ -113,4 +113,4 @@ func transfer_position(array_player,array_ballon):
 
 @rpc("call_local","any_peer", "reliable")
 func creerBallon():
-	
+	multisetupper.gym_multi.nouveauService()
