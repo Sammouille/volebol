@@ -92,10 +92,16 @@ offset_bottom = 40.0
 
 [node name="Player_List" type="VBoxContainer" parent="Multi_Lobby" unique_id=26531230]
 layout_mode = 0
-offset_left = 514.0
-offset_top = 79.0
-offset_right = 554.0
-offset_bottom = 119.0
+offset_left = 100.0
+offset_top = 71.0
+offset_right = 362.00012
+offset_bottom = 136.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Multi_Lobby/Player_List" unique_id=1579246899]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "aenizaoeibaoieboazibeoziabee boazieboziab"
 
 [node name="StartGame" type="Button" parent="Multi_Lobby" unique_id=522588553]
 layout_mode = 0
@@ -105,15 +111,6 @@ offset_right = 634.0
 offset_bottom = 606.0
 text = "Start Game"
 
-[node name="TestButton" type="Button" parent="." unique_id=596610262]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 94.0
-offset_right = 727.0
-offset_bottom = 167.0
-text = "Test de data"
-
 [connection signal="text_submitted" from="Multi_UI/Put_Host_IP_ADDR" to="." method="_on_put_host_ip_addr_text_submitted"]
 [connection signal="pressed" from="Multi_UI/Create_Game" to="." method="_on_create_game_pressed"]
 [connection signal="pressed" from="Multi_Lobby/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="TestButton" to="." method="_on_test_button_pressed"]

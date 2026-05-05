@@ -14,7 +14,7 @@ var gym_multi
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer_gate.server_started.connect(create_gym)
-	multiplayer_gate.player_connected.connect(join_gym)
+	multiplayer_gate.player_connected.connect(add_player_list)
 	print(multiplayer.multiplayer_peer, " alors ", multiplayer.has_multiplayer_peer())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,11 +40,8 @@ func create_gym():
 	gym_multi.is_online = true
 	gym_multi.multiplayer_gate = multiplayer_gate
 	add_child(gym_multi)
-	
+	add_player_list(multiplayer_gate.player_info)
 
-func join_gym(multi_id):
-	multiplayer_gate.setup_player.rpc_id(multi_id)
-	
 
 func _on_start_game_pressed() -> void:
 	if multiplayer.is_server():
@@ -65,23 +62,14 @@ func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 			i.input_getter.set_attributes(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r)
 			i.execute_input(d)
 
-func add_player_list():
+func add_player_list(pname):
 	var rtl = RichTextLabel.new()
-	rtl.text = multiplayer_gate.player_info
-	
+	rtl.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	rtl.text = pname
+	player_list.add_child(rtl)
+
 func check_player_name() -> bool:
 	if player_name.text != "":
 		return true
 	else :
 		return false
-
-
-
-func _on_test_button_pressed() -> void:
-	var i = [1,5,8]
-	var j = ["toi","moi","nous"]
-	var k = "Ensemble nous sommes"
-	var l = 86
-	var m = {"Player":78,"enne":13}
-	var n = Crew.new()
-	multiplayer_gate.test_data(i,j,k,l,m,n)

@@ -76,7 +76,7 @@ func _on_player_connected(id):
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
-	player_connected.emit(new_player_id,new_player_info)
+	player_connected.emit(new_player_info)
 	print("REGISTERED : " ,players, " ", new_player_id)
 	
 	
@@ -107,6 +107,3 @@ func setup_player():
 func get_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 	multisetupper.handle_online_input(multiplayer.get_remote_sender_id(),i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d)
 	
-@rpc("call_local","any_peer","reliable")
-func test_data(a,b,c,d,e,f):
-	print(a," | ",b," | ",c," | ",d," | ",e," | ",f)
