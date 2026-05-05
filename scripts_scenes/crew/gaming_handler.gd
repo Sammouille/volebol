@@ -32,7 +32,7 @@ func change_played_player(player_idx: int):
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("DEBUG_create_ball") and multiplayer.is_server():
-		%BoiteBallons.playerGetBallon(players_on[current_idx])
+		get_tree().get_first_node_in_group("BoiteBallons").playerGetBallon(players_on[current_idx])
 
 func _init(nb_membre := 6, _gauche := true,id := 1, surf: PlancheSurf = null) -> void:
 	gauche = _gauche
