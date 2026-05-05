@@ -8,6 +8,8 @@ var index_ballons:= 0
 
 signal ballon_created(nouveau_ballon: Ballon)
 
+var surf: PlancheSurf
+
 func playerGetBallon(player: Player):
 	var nouveau_ballon := scene_ballon.instantiate()
 	nouveau_ballon.name = "ballon_"+str(index_ballons)
@@ -20,6 +22,8 @@ func playerGetBallon(player: Player):
 	nouveau_ballon.hauteur = player.hauteur + 140
 	nouveau_ballon.actualiserScale()
 	nouveau_ballon.apply_physics = false
+	
+	nouveau_ballon.dico = surf.ajouterBallon()
 
 func machineGetBallon(machine: MachineBallon):
 	var nouveau_ballon := scene_ballon.instantiate()

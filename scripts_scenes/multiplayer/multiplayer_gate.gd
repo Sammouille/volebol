@@ -59,8 +59,8 @@ func remove_multiplayer_peer():
 ## TODO : The "reliable" might be change to improve performance. Might also be
 ## a good idea to select a specific channel
 @rpc("call_local","reliable")
-func load_game(nb_joueureuse,crew_size,ids):
-	get_parent().start_game(nb_joueureuse,crew_size,ids)
+func load_game(nb_joueureuse,crew_size,ids, surf):
+	get_parent().start_game(nb_joueureuse,crew_size,ids, surf)
 
 @rpc("any_peer","call_local","reliable")
 func player_loaded():
@@ -110,3 +110,7 @@ func get_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 @rpc("call_local","any_peer","reliable")
 func test_data(a,b,c,d,e,f):
 	print(a," | ",b," | ",c," | ",d," | ",e," | ",f)
+
+@rpc("call_remote","any_peer","reliable")
+func transfer_position(array_player,array_ballon):
+	multisetupper.handle_position_info(array_player,array_ballon)

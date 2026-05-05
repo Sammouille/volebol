@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("DEBUG_create_ball") and multiplayer.is_server():
 		%BoiteBallons.playerGetBallon(players_on[current_idx])
 
-func _init(nb_membre := 6, _gauche := true,id := 1) -> void:
+func _init(nb_membre := 6, _gauche := true,id := 1, surf: PlancheSurf = null) -> void:
 	gauche = _gauche
 	multiplayer_id = id
 	for i in nb_membre:
@@ -43,6 +43,7 @@ func _init(nb_membre := 6, _gauche := true,id := 1) -> void:
 		if !gauche :
 			nv_player.position.x = -nv_player.position.x
 		add_child(nv_player)
+		nv_player.dico = surf.ajouterJoueureuse()
 
 func _ready() -> void:
 	change_played_player(0)

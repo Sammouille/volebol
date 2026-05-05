@@ -25,7 +25,7 @@ func smashStop(puissance_horizontale: float, puissance_verticale: float, agent: 
 #if frames_arret >= flash_min_frame:
 	index_stop = frames_arret
 	var hit_type:= 0
-	if index_stop >= 7:
+	if puissance_horizontale >= 14.0:
 		hit_type += 1
 	if puissance_horizontale >= 30.0:
 		hit_type += 1 

@@ -47,10 +47,14 @@ func marquerBallon(ballon: Ballon, last_velocite: Vector2, last_h_velocite: floa
 func point(equipe: Crew):
 	pass
 
-func créerCrews(nb_membre : int,id : int, _gauche := true):
-	var nv_crew = CrewHandler.new(nb_membre,_gauche,id)
+func brancherBoite(surf: PlancheSurf):
+	%BoiteBallons.surf = surf
+
+func créerCrews(nb_membre : int,id : int, _gauche := true, surf: PlancheSurf = null):
+	var nv_crew = CrewHandler.new(nb_membre,_gauche,id, surf)
 	crewhandlers.append(nv_crew)
 	terrain.add_child(nv_crew)
+	
 
 func send_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 	multiplayer_gate.get_input.rpc_id(1,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d)
