@@ -75,8 +75,10 @@ func handle_position_info(array_player,array_ballons):
 	for i in surf.array_player.size():
 		surf.array_player[i].set("position",array_player[i].get("position"))
 		surf.array_player[i].set("hauteur",array_player[i].get("hauteur"))	
-	surf.array_ballons = array_ballons
-	#print(surf.array_player,surf.array_ballons)
+	for i in surf.array_ballons.size():
+		surf.array_ballons[i].set("position",array_ballons[i].get("position"))
+		surf.array_ballons[i].set("hauteur",array_ballons[i].get("hauteur"))
+			#print(surf.array_player,surf.array_ballons)
 func add_player_list(pname):
 	var rtl = RichTextLabel.new()
 	rtl.size_flags_vertical = Control.SIZE_EXPAND_FILL
