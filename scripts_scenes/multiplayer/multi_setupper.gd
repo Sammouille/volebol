@@ -72,10 +72,11 @@ func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 
 
 func handle_position_info(array_player,array_ballons):
-	print(array_player,array_ballons)
-	surf.array_player = array_player
+	for i in surf.array_player.size():
+		surf.array_player[i].set("position",array_player[i].get("position"))
+		surf.array_player[i].set("hauteur",array_player[i].get("hauteur"))	
 	surf.array_ballons = array_ballons
-	
+	#print(surf.array_player,surf.array_ballons)
 func add_player_list(pname):
 	var rtl = RichTextLabel.new()
 	rtl.size_flags_vertical = Control.SIZE_EXPAND_FILL
