@@ -70,6 +70,7 @@ func physicUpdate(delta: float):
 		else:
 			position = dico.get("position")
 			hauteur = dico.get("hauteur")
+			checkRebonds()
 	else:
 		if apply_physics:
 			pesenteur()
