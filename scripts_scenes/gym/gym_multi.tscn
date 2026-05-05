@@ -104,7 +104,7 @@ script = ExtResource("12_8pb0e")
 
 [node name="BoiteBallons" type="Node2D" parent="Terrain" unique_id=1209078299 groups=["BoiteBallons"]]
 unique_name_in_owner = true
-z_index = 1
+z_index = 5
 script = ExtResource("13_lrlvk")
 scene_ballon = ExtResource("14_j2wli")
 

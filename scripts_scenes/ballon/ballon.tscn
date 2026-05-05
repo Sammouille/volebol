@@ -22,6 +22,7 @@ metadata/_custom_type_script = "uid://di745a8aj6pci"
 radius = 25.0
 
 [node name="Balle" type="Node2D" unique_id=1998143594]
+z_index = 1
 z_as_relative = false
 script = ExtResource("1_4weii")
 aiming_crew = SubResource("Resource_4ewo4")
