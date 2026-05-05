@@ -51,9 +51,11 @@ func _on_start_game_pressed() -> void:
 		surf = PlancheSurf.new()
 		var nb_joueureuse = multiplayer_gate.players.size()
 		var joueureuses_ids = multiplayer_gate.players.keys()
-		multiplayer_gate.load_game.rpc(nb_joueureuse,6, joueureuses_ids, surf)
+		multiplayer_gate.load_game.rpc(nb_joueureuse,6, joueureuses_ids)
 
-func start_game(nb_joueureuse,crew_size,ids, surf):
+func start_game(nb_joueureuse,crew_size,ids):
+	if surf == null:
+		surf = PlancheSurf.new()
 	multi_lobby.hide()
 	gym_multi.brancherBoite(surf)
 	var gauche = true

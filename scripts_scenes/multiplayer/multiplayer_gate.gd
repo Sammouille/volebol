@@ -59,8 +59,8 @@ func remove_multiplayer_peer():
 ## TODO : The "reliable" might be change to improve performance. Might also be
 ## a good idea to select a specific channel
 @rpc("call_local","reliable")
-func load_game(nb_joueureuse,crew_size,ids, surf):
-	get_parent().start_game(nb_joueureuse,crew_size,ids, surf)
+func load_game(nb_joueureuse,crew_size,ids):
+	get_parent().start_game(nb_joueureuse,crew_size,ids)
 
 @rpc("any_peer","call_local","reliable")
 func player_loaded():
