@@ -22,6 +22,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if multiplayer.is_server() and surf:
+		print(surf.array_player,surf.array_ballons)
 		multiplayer_gate.transfer_position.rpc(surf.array_player,surf.array_ballons)
 
 
@@ -71,6 +72,7 @@ func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 
 
 func handle_position_info(array_player,array_ballons):
+	print(array_player,array_ballons)
 	surf.array_player = array_player
 	surf.array_ballons = array_ballons
 	
