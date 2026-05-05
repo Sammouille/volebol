@@ -44,7 +44,8 @@ func _init(nb_membre := 6, _gauche := true,id := 1, surf: PlancheSurf = null) ->
 			nv_player.position.x = -nv_player.position.x
 		add_child(nv_player)
 		print("caca")
-		nv_player.dico = surf.ajouterJoueureuse()
+		if surf:
+			nv_player.dico = surf.ajouterJoueureuse()
 
 func _ready() -> void:
 	change_played_player(0)

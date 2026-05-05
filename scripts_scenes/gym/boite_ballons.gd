@@ -23,7 +23,8 @@ func playerGetBallon(player: Player):
 	nouveau_ballon.actualiserScale()
 	nouveau_ballon.apply_physics = false
 	
-	nouveau_ballon.dico = surf.ajouterBallon()
+	if surf:
+		nouveau_ballon.dico = surf.ajouterBallon()
 
 func machineGetBallon(machine: MachineBallon):
 	var nouveau_ballon := scene_ballon.instantiate()

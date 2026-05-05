@@ -98,7 +98,7 @@ func physicUpdate(delta: float):
 			#velocite= Vector2.ZERO
 			#h_velocite= 0.0
 		
-		actualiserScale()
+	actualiserScale()
 	
 
 func pesenteur():
