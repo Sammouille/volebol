@@ -50,7 +50,7 @@ func create_game(player_name):
 	players[1] = player_info
 	server_started.emit()
 #	player_connected.emit(1, player_info)
-	print(players)
+	#print(players)
 	
 func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
@@ -77,7 +77,7 @@ func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_info)
-	print("REGISTERED : " ,players, " ", new_player_id)
+	#print("REGISTERED : " ,players, " ", new_player_id)
 	
 	
 func _on_connected_valid():
@@ -85,7 +85,7 @@ func _on_connected_valid():
 	players[peer_id] = player_info
 	server_started.emit()
 	#player_connected.emit(peer_id, player_info)
-	print("CONNECTED : ", players, " ",peer_id)
+	#print("CONNECTED : ", players, " ",peer_id)
 	
 func _on_connected_fail():
 	remove_multiplayer_peer()
