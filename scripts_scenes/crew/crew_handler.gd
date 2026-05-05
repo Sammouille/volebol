@@ -1,6 +1,8 @@
 extends Node2D
 class_name CrewHandler
 
+@export var crew: Crew
+
 var current_idx:= -1
 @onready var players_on:= get_children()
 var players_pos = [Vector2(-700,300),
@@ -16,6 +18,10 @@ var is_online = false
 var multiplayer_id := 1
 var gauche := true
 @onready var gym = get_parent().get_parent()
+
+func rotationJoueureuses():
+	move_child(players_on[0],-1)
+	players_on.append(players_on.pop_front())
 
 func change_played_player(player_idx: int):
 	if current_idx != -1:

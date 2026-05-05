@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crfj28egw7bra" path="res://scripts_scenes/gym/gym.gd" id="1_13ler"]
 [ext_resource type="Script" uid="uid://btrvc5edi8oxw" path="res://scripts_scenes/gym/zhonya.gd" id="1_exlq5"]
-[ext_resource type="Script" uid="uid://cmr6nsg774cjv" path="res://scripts_scenes/crew/gaming_handler.gd" id="1_n5wjn"]
+[ext_resource type="Script" uid="uid://cmr6nsg774cjv" path="res://scripts_scenes/crew/crew_handler.gd" id="1_n5wjn"]
 [ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_0ptsj"]
 [ext_resource type="Script" uid="uid://b6wqvc510boft" path="res://scripts_scenes/gym/terrain.gd" id="3_gk1jr"]
 [ext_resource type="PackedScene" uid="uid://dihr5fgsrlfjj" path="res://scripts_scenes/ballon/ballon.tscn" id="3_rgj0q"]
@@ -21,6 +21,12 @@ downed_color = Color(0.25541443, 0.0002082723, 1.2032688e-08, 1)
 libero_color = Color(0.9999843, 0.5626822, 0.57090235, 1)
 metadata/_custom_type_script = "uid://di745a8aj6pci"
 
+[sub_resource type="Resource" id="Resource_thq03"]
+script = ExtResource("2_0ptsj")
+downed_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
+libero_color = Color(1, 1, 1, 1)
+metadata/_custom_type_script = "uid://di745a8aj6pci"
+
 [sub_resource type="Resource" id="Resource_5vo2v"]
 script = ExtResource("2_0ptsj")
 color = Color(0.41061407, 0.14309785, 0.99999994, 1)
@@ -31,7 +37,7 @@ metadata/_custom_type_script = "uid://di745a8aj6pci"
 [node name="Gym" type="Node2D" unique_id=1745283274 groups=["GymHandler"]]
 script = ExtResource("1_13ler")
 equipe_gauche = SubResource("Resource_i2ax4")
-equipe_droite = SubResource("Resource_5vo2v")
+equipe_droite = SubResource("Resource_thq03")
 
 [node name="Zhonya" type="Node" parent="." unique_id=861837198 groups=["Zhonya"]]
 script = ExtResource("1_exlq5")
@@ -51,9 +57,7 @@ script = ExtResource("5_5vo2v")
 
 [node name="CrewHandler" type="Node2D" parent="Terrain" unique_id=1321448907]
 script = ExtResource("1_n5wjn")
-
-[node name="Node2D" type="Node2D" parent="Terrain/CrewHandler" unique_id=1336743310]
-position = Vector2(-804, 346)
+crew = SubResource("Resource_i2ax4")
 
 [node name="MachineBallon" parent="Terrain" unique_id=2131113815 instance=ExtResource("8_ne6fi")]
 position = Vector2(478, 6)
