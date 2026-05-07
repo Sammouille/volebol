@@ -61,7 +61,7 @@ func start_game(nb_joueureuse,crew_size,ids):
 	gym_multi.brancherBoite(surf)
 	var gauche = true
 	for i in nb_joueureuse:
-		gym_multi.créerCrews(crew_size,ids[i],gauche, surf)
+		gym_multi.creerCrewHandlers(crew_size,ids[i],gauche, surf)
 		gauche = !gauche
 
 func handle_online_input(sender_id,i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):

@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://bdyqqejrghx68"]
 
-[ext_resource type="Script" uid="uid://crfj28egw7bra" path="res://scripts_scenes/gym/gym.gd" id="1_13ler"]
 [ext_resource type="Script" uid="uid://btrvc5edi8oxw" path="res://scripts_scenes/gym/zhonya.gd" id="1_exlq5"]
-[ext_resource type="Script" uid="uid://cmr6nsg774cjv" path="res://scripts_scenes/crew/crew_handler.gd" id="1_n5wjn"]
+[ext_resource type="Script" uid="uid://nwroui7m0odl" path="res://scripts_scenes/gym/gym_entrainement.gd" id="1_r7jk3"]
 [ext_resource type="Script" uid="uid://di745a8aj6pci" path="res://scripts_scenes/crew/crew.gd" id="2_0ptsj"]
 [ext_resource type="Script" uid="uid://b6wqvc510boft" path="res://scripts_scenes/gym/terrain.gd" id="3_gk1jr"]
 [ext_resource type="PackedScene" uid="uid://dihr5fgsrlfjj" path="res://scripts_scenes/ballon/ballon.tscn" id="3_rgj0q"]
@@ -35,7 +34,8 @@ libero_color = Color(0.68522155, 0.6391617, 0.9743822, 1)
 metadata/_custom_type_script = "uid://di745a8aj6pci"
 
 [node name="Gym" type="Node2D" unique_id=1745283274 groups=["GymHandler"]]
-script = ExtResource("1_13ler")
+script = ExtResource("1_r7jk3")
+scene_machine = ExtResource("8_ne6fi")
 equipe_gauche = SubResource("Resource_i2ax4")
 equipe_droite = SubResource("Resource_thq03")
 
@@ -43,6 +43,7 @@ equipe_droite = SubResource("Resource_thq03")
 script = ExtResource("1_exlq5")
 
 [node name="Terrain" type="Node2D" parent="." unique_id=46393785]
+unique_name_in_owner = true
 z_index = -2
 position = Vector2(576, 324)
 scale = Vector2(0.5, 0.5)
@@ -54,13 +55,6 @@ couleur_bande = Color(0.91859436, 0.79811287, 0.5563978, 1)
 unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
 script = ExtResource("5_5vo2v")
-
-[node name="CrewHandler" type="Node2D" parent="Terrain" unique_id=1321448907]
-script = ExtResource("1_n5wjn")
-crew = SubResource("Resource_i2ax4")
-
-[node name="MachineBallon" parent="Terrain" unique_id=2131113815 instance=ExtResource("8_ne6fi")]
-position = Vector2(478, 6)
 
 [node name="VfxTerrain" type="Node2D" parent="Terrain" unique_id=2090876128]
 unique_name_in_owner = true

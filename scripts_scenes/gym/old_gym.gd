@@ -28,9 +28,9 @@ var ballons_echauffement: Array[Ballon]
 
 func nouveauService():
 	if service_gauche:
-		%BoiteBallons.playerGetBallon(crewhandlers[0].players_on[0])
+		%BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
 	else:
-		%BoiteBallons.playerGetBallon(crewhandlers[1].players_on[0])
+		%BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
 		
 
 
@@ -65,7 +65,7 @@ func marquerBallon(ballon: Ballon, last_velocite: Vector2, last_h_velocite: floa
 
 func echangeCote():
 	for i in crewhandlers:
-		for j in i.players_in:
+		for j in i.players:
 			j.position.x = -j.position.x
 	crewhandlers.append(crewhandlers.pop_front())
 	equipe_gauche = crewhandlers[0].crew
@@ -121,7 +121,7 @@ func _input(event: InputEvent) -> void:
 func brancherBoite(surf: PlancheSurf):
 	%BoiteBallons.surf = surf
 
-func créerCrews(nb_membre : int,id : int, _gauche := true, surf: PlancheSurf = null):
+func creerCrewHandlers(nb_membre : int,id : int, _gauche := true, surf: PlancheSurf = null):
 	var nv_crew = CrewHandler.new(nb_membre,_gauche,id, surf)
 	crewhandlers.append(nv_crew)
 	terrain.add_child(nv_crew)

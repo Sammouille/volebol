@@ -4,7 +4,7 @@ class_name CrewHandler
 @export var crew: Crew
 
 var current_idx:= -1
-@onready var players_on:= get_children()
+@onready var players:= get_children()
 var players_pos = [Vector2(-700,300),
 Vector2(-700,0),
 Vector2(-700,-300),
@@ -20,24 +20,25 @@ var gauche := true
 @onready var gym = get_parent().get_parent()
 
 func rotationJoueureuses():
-	move_child(players_on[0],-1)
-	players_on.append(players_on.pop_front())
+	move_child(players[0],-1)
+	players.append(players.pop_front())
 
 func change_played_player(player_idx: int):
 	if current_idx != -1:
-		players_on[current_idx].played = false
-	if player_idx > -1 and player_idx < players_on.size():
+		players[current_idx].played = false
+	if player_idx > -1 and player_idx < players.size():
 		current_idx = player_idx
 	elif player_idx < 0:
-		current_idx = players_on.size()-1
-	elif player_idx > players_on.size()-1:
+		current_idx = players.size()-1
+	elif player_idx > players.size()-1:
 		current_idx = 0
-	players_on[current_idx].played = true
-	move_child(players_on[current_idx], 5)
+	players[current_idx].played = true
+	move_child(players[current_idx], 5)
 		
 
 
-func _init(nb_membre := 6, _gauche := true,id := 1, surf: PlancheSurf = null) -> void:
+func _init(nb_membre := 6, _gauche := true,id := 1, _crew: Crew = Crew.new(), surf: PlancheSurf = null) -> void:
+	crew = _crew
 	gauche = _gauche
 	multiplayer_id = id
 	for i in nb_membre:
@@ -46,7 +47,7 @@ func _init(nb_membre := 6, _gauche := true,id := 1, surf: PlancheSurf = null) ->
 		if !gauche :
 			nv_player.position.x = -nv_player.position.x
 		add_child(nv_player)
-		print("caca")
+		players.append(nv_player)
 		if surf:
 			nv_player.dico = surf.ajouterJoueureuse()
 
@@ -55,7 +56,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	input_getter.updateInput(delta)
-	if gym.is_online :
+	if gym is GyMulti:
 		gym.send_input(input_getter.input_changement,
 		input_getter.input_deplacement,
 		input_getter.frame_jump,
@@ -72,7 +73,7 @@ func _process(delta: float) -> void:
 			else:
 				change_played_player(current_idx + int(input_getter.input_changement))
 		
-		players_on[current_idx].updatePlayer(input_getter, delta)
+		players[current_idx].updatePlayer(input_getter, delta)
 
 func execute_input(delta):
 	if multiplayer.is_server():
@@ -82,7 +83,7 @@ func execute_input(delta):
 			else:
 				change_played_player(current_idx + int(input_getter.input_changement))
 		
-		players_on[current_idx].updatePlayer(input_getter, delta)
+		players[current_idx].updatePlayer(input_getter, delta)
 
 func change_is_online():
 	if multiplayer.multiplayer_peer != null:	

@@ -6,6 +6,8 @@ class_name MachineBallon
 
 @export var duree_replacement:= 0.3
 
+var gauche:= false
+
 var timer:= Timer.new()
 
 var input_getter:= InputGetter.new()
@@ -40,11 +42,13 @@ func nouveauTir():
 		is_smashing = true
 		
 		var nv_pos:= Vector2(randi_range(300,1500), randi_range(-450,450))
+		if gauche:
+			nv_pos.x = -nv_pos.x
 		var nv_hauteur:= randi_range(0, 131)
 		await get_tree().create_tween().tween_property(self, "position", nv_pos, duree_replacement).finished
 		await get_tree().create_tween().tween_property(self, "hauteur", nv_hauteur, duree_replacement * 2.0).finished
 		
-		var nouveau_ballon: Ballon = %BoiteBallons.machineGetBallon(self)
+		var nouveau_ballon: Ballon = get_tree().get_first_node_in_group("BoiteBallons").machineGetBallon(self)
 		nouveau_ballon.hauteur = hauteur + randf_range(%Shoot.curve_hratio.min_domain, %Shoot.curve_hratio.max_domain)
 		var puissance_tir:= randf_range(0.3, %Shoot.ccharge_shoot.max_domain * 1.2)
 		await get_tree().create_tween().tween_property(input_getter, "charge_shoot", puissance_tir, puissance_tir).finished
