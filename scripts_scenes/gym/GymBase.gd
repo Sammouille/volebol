@@ -77,20 +77,20 @@ func point(equipe: Crew):
 	if equipe.crew_handler:
 		equipe.crew_handler.rotationJoueureuses()
 	if equipe == equipe_gauche:
-		%PanneauDesScores.point(true)
 		score_gauche += 1
 		if score_gauche >= 25 or (tie_break and score_gauche >= 15):
 			if score_droite <= score_gauche-2:
 				finSet(equipe)
 		service_gauche = true
 	elif equipe == equipe_droite:
-		%PanneauDesScores.point(false)
 		score_droite += 1
 		if score_droite >= 25 or (tie_break and score_droite >= 15):
 			if score_gauche <= score_droite-2:
 				finSet(equipe)
 		service_gauche = false
 	
+	%PanneauDesScores.actualiserTexte()
+
 func finSet(equipe: Crew):
 	score_droite = 0
 	score_gauche = 0

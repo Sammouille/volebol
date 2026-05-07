@@ -48,6 +48,7 @@ func _init(nb_membre := 6, _gauche := true,id := 1, _crew: Crew = Crew.new(), su
 			nv_player.position.x = -nv_player.position.x
 		add_child(nv_player)
 		players.append(nv_player)
+		nv_player.crew = crew
 		if surf:
 			nv_player.dico = surf.ajouterJoueureuse()
 

@@ -48,6 +48,11 @@ func nouveauTir():
 		await get_tree().create_tween().tween_property(self, "position", nv_pos, duree_replacement).finished
 		await get_tree().create_tween().tween_property(self, "hauteur", nv_hauteur, duree_replacement * 2.0).finished
 		
+		if gauche:
+			%Forward.current_aim = Vector2.RIGHT * 30.0
+		else:
+			%Forward.current_aim = Vector2.LEFT * 30.0
+		
 		var nouveau_ballon: Ballon = get_tree().get_first_node_in_group("BoiteBallons").machineGetBallon(self)
 		nouveau_ballon.hauteur = hauteur + randf_range(%Shoot.curve_hratio.min_domain, %Shoot.curve_hratio.max_domain)
 		var puissance_tir:= randf_range(0.3, %Shoot.ccharge_shoot.max_domain * 1.2)

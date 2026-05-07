@@ -2,7 +2,7 @@ extends AgentPhysique
 class_name Player
 
 
-@onready var crew: Crew = get_parent().crew
+@export var crew: Crew
 
 @export var libero:= false
 

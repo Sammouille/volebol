@@ -26,13 +26,6 @@ downed_color = Color(0.45840502, 0.45840508, 0.45840502, 1)
 libero_color = Color(1, 1, 1, 1)
 metadata/_custom_type_script = "uid://di745a8aj6pci"
 
-[sub_resource type="Resource" id="Resource_5vo2v"]
-script = ExtResource("2_0ptsj")
-color = Color(0.41061407, 0.14309785, 0.99999994, 1)
-downed_color = Color(0.16797674, 0.10815748, 0.34187958, 1)
-libero_color = Color(0.68522155, 0.6391617, 0.9743822, 1)
-metadata/_custom_type_script = "uid://di745a8aj6pci"
-
 [node name="Gym" type="Node2D" unique_id=1745283274 groups=["GymHandler"]]
 script = ExtResource("1_r7jk3")
 scene_machine = ExtResource("8_ne6fi")
@@ -58,6 +51,7 @@ script = ExtResource("5_5vo2v")
 
 [node name="VfxTerrain" type="Node2D" parent="Terrain" unique_id=2090876128]
 unique_name_in_owner = true
+z_index = 1
 z_as_relative = false
 script = ExtResource("5_0ptsj")
 
@@ -76,8 +70,6 @@ offset_right = 908.0
 offset_bottom = 458.0
 mouse_filter = 2
 script = ExtResource("10_r7jk3")
-equipe_gauche = SubResource("Resource_i2ax4")
-equipe_droite = SubResource("Resource_5vo2v")
 
 [node name="ScoreGauche" type="RichTextLabel" parent="Terrain/VfxTerrain/Impacter/PanneauDesScores" unique_id=848469259]
 unique_name_in_owner = true

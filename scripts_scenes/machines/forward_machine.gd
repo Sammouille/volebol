@@ -10,6 +10,12 @@ var last_aim:= Vector2.LEFT * 30.0
 
 var charge:= 0.0
 
+func _physics_process(delta: float) -> void:
+	if !Engine.is_editor_hint():
+		if get_parent().played:
+			if current_aim != last_aim:
+				look_at(global_position + current_aim)
+		last_aim = current_aim
 
 func _process(delta: float) -> void:
 	queue_redraw()
