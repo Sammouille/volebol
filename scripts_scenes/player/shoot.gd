@@ -106,4 +106,5 @@ PUISSANCE ==========")
 	player.zhonya.smashStop(total_power.length(), recalibrage_hauteur, player, total_power.normalized())
 	ballon.aimed = false
 	ballon.aimed_ratio = 0.0
-	player.shooting.emit()
+	if player is Player:
+		player.shooting.emit()

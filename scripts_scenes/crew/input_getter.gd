@@ -37,7 +37,7 @@ func updateInput(delta: float):
 	else:
 		frame_jump = 0
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) or Input.is_action_pressed("passe"):
 		charge_pass += delta
 		reception = true
 	else:
@@ -46,7 +46,7 @@ func updateInput(delta: float):
 			input_pass = charge_pass
 			charge_pass = 0.0
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT) or Input.is_action_pressed("tir"):
 		charge_shoot += delta
 	else:
 		if charge_shoot != 0.0:
