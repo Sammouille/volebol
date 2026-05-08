@@ -107,10 +107,14 @@ func setup_player():
 func get_input(i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d):
 	multisetupper.handle_online_input(multiplayer.get_remote_sender_id(),i_c,i_d,f_j,c_p,i_p,c_s,i_s,r,d)
 
-@rpc("call_remote","any_peer","reliable")
+@rpc("call_remote","any_peer","unreliable")
 func transfer_position(array_player,array_ballon):
 	multisetupper.handle_position_info(array_player,array_ballon)
 
 @rpc("call_local","any_peer", "reliable")
 func creerBallon():
 	multisetupper.gym_multi.nouveauService()
+	
+@rpc("call_remote","any_peer","reliable")
+func scorePoint():
+	multisetupper.gym_multi.ballon_actif._toucheSol()

@@ -68,8 +68,6 @@ offset_right = 908.0
 offset_bottom = 458.0
 mouse_filter = 2
 script = ExtResource("11_78ong")
-equipe_gauche = SubResource("Resource_i2ax4")
-equipe_droite = SubResource("Resource_5vo2v")
 
 [node name="ScoreGauche" type="RichTextLabel" parent="Terrain/VfxTerrain/Impacter/PanneauDesScores" unique_id=848469259]
 unique_name_in_owner = true
