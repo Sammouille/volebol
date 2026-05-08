@@ -29,7 +29,9 @@ func _toucheSol():
 		active = false
 		gym.marquerBallon(self, velocite, h_velocite)
 		if !dico.is_empty():
-			gym.multiplayer_gate.scorePoint.rpc()
+			print("PASSE T(ON PAR ICI)")
+			if multiplayer.is_server():
+				gym.multiplayer_gate.scorePoint.rpc()
 
 func disparition():
 	await get_tree().create_tween().tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.3).finished
@@ -42,7 +44,6 @@ func _agent_process(delta: float):
 	if touched_ground and velocite.length() < 0.3 and h_velocite < 0.1:
 		z_index = -1
 		disparition()
-		print("BALL IS TOUCHING GROUND")
 		
 	
 	#if velocite.length() >= 4.0:
