@@ -51,6 +51,7 @@ func _init(nb_membre := 6, _gauche := true,id := 1, _crew: Crew = Crew.new(), su
 		nv_player.crew = crew
 		if surf:
 			nv_player.dico = surf.ajouterJoueureuse()
+			nv_player.shooting.connect(gym.playerShooting)
 
 func _ready() -> void:
 	change_played_player(0)

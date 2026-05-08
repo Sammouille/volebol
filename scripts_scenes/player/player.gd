@@ -32,6 +32,8 @@ var played:= false
 
 var ballon_tenu: Ballon = null
 
+signal shooting()
+
 func updatePlayer(input_getter: InputGetter, delta: float):
 	if input_getter.input_deplacement != Vector2.ZERO:
 		deplacement(input_getter.input_deplacement)

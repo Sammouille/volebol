@@ -23,3 +23,7 @@ func nouveauService():
 	
 	ballon_actif = nv_ballon
 	multiplayer_gate.ballon_actif = ballon_actif
+
+## TODO : On peut rajouter pleins d'informations quand quelqu'un shoot, donc ne pas hésiter !
+func playerShooting():
+	multiplayer_gate.playerShooting.rpc()

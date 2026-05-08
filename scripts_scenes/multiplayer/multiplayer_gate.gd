@@ -119,3 +119,8 @@ func creerBallon():
 @rpc("call_remote","any_peer","reliable")
 func scorePoint():
 	ballon_actif._toucheSol()
+
+@rpc("call_remote","any_peer","reliable")
+func playerShooting():
+	if ballon_actif != null:
+		ballon_actif.shooted = true

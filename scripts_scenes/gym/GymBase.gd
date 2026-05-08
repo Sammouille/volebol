@@ -54,6 +54,7 @@ func suiviNouveauBallon(ballon: Ballon):
 
 func marquerBallon(ballon: Ballon, last_velocite: Vector2, last_h_velocite: float):
 	if ballon.touched:
+		print("Ballon.... Marqué... Deep")
 		if ballon.position.x > -915 and ballon.position.x < 915 and ballon.position.y > -465 and ballon.position.y < 465:
 			if ballon.position.x >= 0:
 				point(equipe_gauche)
