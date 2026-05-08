@@ -44,7 +44,7 @@ script = ExtResource("3_gk1jr")
 couleur_sol = Color(0.41357413, 0.18958604, 0.22651654, 1)
 couleur_bande = Color(0.91859436, 0.79811287, 0.5563978, 1)
 
-[node name="Camera2D" type="Camera2D" parent="Terrain" unique_id=2088095385]
+[node name="Camera2D" type="Camera2D" parent="Terrain" unique_id=2088095385 groups=["Camera"]]
 unique_name_in_owner = true
 zoom = Vector2(0.8, 0.8)
 script = ExtResource("5_5vo2v")

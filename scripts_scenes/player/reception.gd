@@ -19,12 +19,14 @@ func updateReception(input_getter: InputGetter, delta: float):
 						ballon_recu.apply_physics = false
 						ballon_recu.h_velocite = -ballon_recu.h_velocite * ballon_recu.rebond * 0.5
 						traj_initiale = ballon_recu.velocite
+						get_tree().get_first_node_in_group("Camera").pression = true
 		else:
 			ballon_recu.velocite -= traj_initiale * vitesse_negation * delta
 			print(ballon_recu.velocite)
 			ballon_recu.h_velocite += montee_prog * delta
 			print(ballon_recu.h_velocite)
 	elif ballon_recu != null:
+		get_tree().get_first_node_in_group("Camera").pression = false
 		get_parent().apply_physics = true
 		ballon_recu.apply_physics = true
 		ballon_recu = null

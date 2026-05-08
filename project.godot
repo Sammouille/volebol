@@ -29,6 +29,7 @@ enabled=PackedStringArray("res://addons/ridiculous_coding/plugin.cfg")
 Zhonya=""
 BoiteBallons=""
 GymHandler=""
+Camera=""
 
 [gui]
 
