@@ -50,11 +50,14 @@ func _init(nb_membre := 6, _gauche := true,id := 1, _crew: Crew = Crew.new(), su
 		players.append(nv_player)
 		nv_player.crew = crew
 		if surf:
+			is_online = true
 			nv_player.dico = surf.ajouterJoueureuse()
-			nv_player.shooting.connect(gym.playerShooting)
 
 func _ready() -> void:
 	change_played_player(0)
+	if is_online:
+		for i in players:
+			i.shooting.connect(gym.playerShooting)
 
 func _process(delta: float) -> void:
 	input_getter.updateInput(delta)
