@@ -13,3 +13,13 @@ func _input(event: InputEvent) -> void:
 			multiplayer_gate.creerBallon.rpc()
 		else:
 			nouveauService()
+
+func nouveauService():
+	var nv_ballon: Ballon
+	if service_gauche:
+		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
+	else:
+		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
+	
+	ballon_actif = nv_ballon
+	multiplayer_gate.ballon_actif = ballon_actif

@@ -16,6 +16,7 @@ var player_info = "name"
 
 var players_loaded = 0
 
+var ballon_actif : Ballon
 @onready var multisetupper = get_parent()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -117,4 +118,4 @@ func creerBallon():
 	
 @rpc("call_remote","any_peer","reliable")
 func scorePoint():
-	multisetupper.gym_multi.ballon_actif._toucheSol()
+	ballon_actif._toucheSol()
