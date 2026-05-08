@@ -38,10 +38,14 @@ func creerCrewHandlers(nb_membre : int,id : int, _gauche := true, surf: PlancheS
 	%Terrain.add_child(nv_crew)
 
 func nouveauService():
+	var nv_ballon: Ballon
 	if service_gauche:
-		%BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
+		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
 	else:
-		%BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
+		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
+	
+	ballon_actif = nv_ballon
+		
 
 # Jcrois cette fonction est jamais utilisée
 func suiviNouveauBallon(ballon: Ballon):
