@@ -25,6 +25,8 @@ func playerGetBallon(player: Player):
 	
 	if surf:
 		nouveau_ballon.dico = surf.ajouterBallon()
+	
+	return nouveau_ballon
 
 func machineGetBallon(machine: MachineBallon):
 	var nouveau_ballon := scene_ballon.instantiate()
