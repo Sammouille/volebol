@@ -30,6 +30,8 @@ class_name Player
 
 var played:= false
 
+var gauche:= true
+
 var ballon_tenu: Ballon = null
 
 signal shooting()
@@ -56,6 +58,11 @@ func deplacement(direction: Vector2):
 	if grounded:
 		direction = direction.normalized()
 		appliquerForce(direction * vitesse)
+	
+	if gauche and (position + velocite).x > -50.0:
+		position.x = -50.0
+	elif !gauche and (position + velocite).x < 50.0:
+		position.x = 50.0
 
 func tryJump(input_getter: InputGetter):
 	jumper.jump(input_getter.frame_jump, grounded, input_getter.input_deplacement)

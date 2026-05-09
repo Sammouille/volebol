@@ -6,16 +6,18 @@ extends Node2D
 
 const SIZE:= 44.0
 
+var mod_taille:= 1.0
+
 func _draw() -> void:
 	if get_parent().libero:
-		draw_circle(Vector2.ZERO, SIZE, get_parent().crew.libero_color, false, 25.0)
+		draw_circle(Vector2.ZERO, SIZE*mod_taille, get_parent().crew.libero_color, false, 25.0)
 	else:
-		draw_circle(Vector2.ZERO, SIZE, get_parent().crew.color, false, 25.0)
+		draw_circle(Vector2.ZERO, SIZE*mod_taille, get_parent().crew.color, false, 25.0)
 	if !Engine.is_editor_hint():
 		if get_parent().played:
-			draw_circle(Vector2.ZERO, SIZE * 1.44, Color(1.0, 1.0, 1.0, 1.0), false, 7.0)
+			draw_circle(Vector2.ZERO, SIZE*mod_taille * 1.44, Color(1.0, 1.0, 1.0, 1.0), false, 7.0)
 	
-	draw_circle(Vector2.ZERO, SIZE, couleur, true)
+	draw_circle(Vector2.ZERO, SIZE*mod_taille, couleur, true)
 
 func _process(delta: float) -> void:
 	if get_parent().hauteur > 200:

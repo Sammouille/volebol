@@ -39,12 +39,13 @@ func creerCrewHandlers(nb_membre : int,id : int, _gauche := true, surf: PlancheS
 
 func nouveauService():
 	var nv_ballon: Ballon
-	if service_gauche:
+	if service_gauche and crewhandlers[0] is CrewHandler:
 		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
-	else:
+	elif !service_gauche and crewhandlers[1] is CrewHandler:
 		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
 	
-	ballon_actif = nv_ballon
+	if nv_ballon:
+		ballon_actif = nv_ballon
 		
 
 # Jcrois cette fonction est jamais utilisée

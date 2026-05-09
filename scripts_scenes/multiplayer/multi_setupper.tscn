@@ -31,7 +31,7 @@ offset_left = 251.0
 offset_top = 355.0
 offset_right = 518.0
 offset_bottom = 382.0
-text = "2a02:8434:66f0:a601:bccc:1065:27d9:8314"
+text = " 2a02:8434:66f0:a601:53c:b0f9:b8eb:fcc3 "
 
 [node name="InfoAddr" type="RichTextLabel" parent="Multi_UI/Put_Host_IP_ADDR" unique_id=316858306]
 layout_mode = 0
