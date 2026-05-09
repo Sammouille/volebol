@@ -3,6 +3,8 @@ class_name Ballon
 
 
 
+var last_hauteur:= 10.0
+
 var touched:= false
 
 var active:= false
@@ -22,6 +24,8 @@ signal disparu(ballon_disparu: Ballon)
 
 @onready var gym:= get_tree().get_first_node_in_group("GymHandler")
 
+func _ready() -> void:
+	last_hauteur = hauteur
 
 func _toucheSol():
 	if !touched_ground:
@@ -49,15 +53,26 @@ func _agent_process(delta: float):
 	#if velocite.length() >= 4.0:
 		#print(velocite.length())
 	
-	if absf(position.x) < 25.0 and hauteur > 200.0:
+	if absf(position.x) < 20.0:
 		print("
-PASSAGE AU DESSUS FILET ======")
+PASSAGE AU NIVEAU DU FILET ======")
 		print("hauteur ballon sur filet: " + str(hauteur))
+		if hauteur > 200.0 and hauteur < 220.0:
+			if h_velocite < 0.0:
+				h_velocite = -h_velocite * rebond * 0.5
+				velocite *= rebond * 0.5
+			else:
+				velocite.x = -velocite.x
+		elif hauteur < 220.0:
+			velocite.x = -velocite.x
+			
 	
 	if holding_agent != null:
 		if holding_agent is Player:
 			hauteur = holding_agent.hauteur + 140
 		position = holding_agent.position
 		apply_physics = false
+	
+	last_hauteur = hauteur
 	#elif !apply_physics:
 		#apply_physics = true

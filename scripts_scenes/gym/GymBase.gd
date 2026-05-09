@@ -39,10 +39,13 @@ func creerCrewHandlers(nb_membre : int,id : int, _gauche := true, surf: PlancheS
 
 func nouveauService():
 	var nv_ballon: Ballon
-	if service_gauche and crewhandlers[0] is CrewHandler:
+	if crewhandlers.size() > 1:
+		if service_gauche and crewhandlers[0] is CrewHandler:
+			nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
+		elif !service_gauche and crewhandlers[1] is CrewHandler:
+			nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
+	elif !crewhandlers.is_empty():
 		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[0].players[0])
-	elif !service_gauche and crewhandlers[1] is CrewHandler:
-		nv_ballon = %BoiteBallons.playerGetBallon(crewhandlers[1].players[0])
 	
 	if nv_ballon:
 		ballon_actif = nv_ballon
