@@ -6,6 +6,10 @@ extends Node
 var ballon_recu: Ballon = null
 var traj_initiale:= Vector2.ZERO
 
+var angle_vise:= Vector2.ZERO
+
+
+
 func updateReception(input_getter: InputGetter, delta: float):
 	if input_getter.reception:
 		if ballon_recu == null:
@@ -13,6 +17,7 @@ func updateReception(input_getter: InputGetter, delta: float):
 				for zone_ballon in %Envergure.get_overlapping_areas():
 					var ballon = zone_ballon.get_parent()
 					if ballon is Ballon:
+						angle_vise = %Forward.current_aim.normalized()
 						get_parent().apply_physics = false
 						print("reception")
 						ballon_recu = ballon
